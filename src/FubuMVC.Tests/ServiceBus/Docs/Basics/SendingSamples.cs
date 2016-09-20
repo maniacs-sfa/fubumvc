@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using FubuMVC.Core.ServiceBus;
 using FubuMVC.Core.ServiceBus.Runtime.Cascading;
-using FubuMVC.Core.ServiceBus.Web;
 
 namespace FubuMVC.Tests.ServiceBus.Docs.Basics
 {
@@ -94,14 +93,4 @@ namespace FubuMVC.Tests.ServiceBus.Docs.Basics
     {
     }
 
-    // SAMPLE: EndpointSendingSample
-    public class LoginEndpoint : ISendMessages
-    {
-        public MessageToSend post_my_route(LoginInputModel input)
-        {
-            //Send message using routing rules in TransportRegistry
-            return new MessageToSend();
-        }
-    }
-    // ENDSAMPLE
 }

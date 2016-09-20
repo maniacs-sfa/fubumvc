@@ -61,8 +61,6 @@
     <Compile Include="AboutEndpointTester.cs" />
     <Compile Include="AddressClasses.cs" />
     <Compile Include="AjaxExtensionsTester.cs" />
-    <Compile Include="Ajax\AjaxContinuationPolicyIntegratedTester.cs" />
-    <Compile Include="Ajax\AjaxContinuationTester.cs" />
     <Compile Include="Bugs\DoubleRegistrationOfImports.cs" />
     <Compile Include="Bugs\FubuPackageRegistry_should_honor_the_url_prefix.cs" />
     <Compile Include="Bugs\Issue101.cs" />
@@ -153,7 +151,6 @@
     <Compile Include="Registration\default_action_discovery.cs" />
     <Compile Include="Registration\FilterAttributeTester.cs" />
     <Compile Include="Registration\Nodes\RoutedChainTester.cs" />
-    <Compile Include="Registration\OutputBeforeAjaxContinuationPolicyTester.cs" />
     <Compile Include="Registration\Querying\ChainResoluationCacheRootAt.cs" />
     <Compile Include="Registration\Registration\FubuPackageRegistry_Importing_Mechanics_Specs.cs" />
     <Compile Include="Registration\SettingsCollectionTester.cs" />
@@ -249,7 +246,6 @@
     <Compile Include="ServiceBus\Polling\PollingJobRunImmediatelyIntegrationTester.cs" />
     <Compile Include="ServiceBus\Polling\PollingJobTester.cs" />
     <Compile Include="ServiceBus\Polling\PollingServicesRegistry_spec.cs" />
-    <Compile Include="ServiceBus\Publishing\EventPublisherTester.cs" />
     <Compile Include="ServiceBus\RecordingChannel.cs" />
     <Compile Include="ServiceBus\RecordingEnvelopeSender.cs" />
     <Compile Include="ServiceBus\RecordingReceiver.cs" />

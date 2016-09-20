@@ -143,8 +143,6 @@ namespace FubuMVC.Core.Registration
 
         public IEnumerable<IConfigurationAction> GlobalReorderingRules()
         {
-            yield return new OutputBeforeAjaxContinuationPolicy();
-
             yield return new ReorderBehaviorsPolicy
             {
                 CategoryMustBeAfter = BehaviorCategory.Authorization,

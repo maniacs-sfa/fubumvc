@@ -1,10 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Reflection;
-using FubuCore;
-using FubuCore.Util;
-using FubuMVC.Core.ServiceBus.Web;
 
 namespace FubuMVC.Core.Registration.DSL
 {
@@ -18,7 +13,7 @@ namespace FubuMVC.Core.Registration.DSL
         }
 
         /// <summary>
-        /// Find Actions on classes that end on 'Controller' from the main application assembly
+        ///     Find Actions on classes that end on 'Controller' from the main application assembly
         /// </summary>
         public ActionCallCandidateExpression IncludeClassesSuffixedWithController()
         {
@@ -26,7 +21,7 @@ namespace FubuMVC.Core.Registration.DSL
         }
 
         /// <summary>
-        /// Create an adhoc policy for discovering actions 
+        ///     Create an adhoc policy for discovering actions
         /// </summary>
         /// <param name="configuration"></param>
         public ActionCallCandidateExpression FindBy(Action<ActionSource> configuration)
@@ -39,15 +34,15 @@ namespace FubuMVC.Core.Registration.DSL
 
 
         /// <summary>
-        /// Find actions on the specified type
+        ///     Find actions on the specified type
         /// </summary>
         public ActionCallCandidateExpression IncludeType<T>()
         {
-            return FindWith(new SingleTypeActionSource(typeof (T), new ActionMethodFilter()));
+            return FindWith(new SingleTypeActionSource(typeof(T), new ActionMethodFilter()));
         }
 
         /// <summary>
-        /// Find actions through an <see cref="IActionSource"/> instance.
+        ///     Find actions through an <see cref="IActionSource" /> instance.
         /// </summary>
         public ActionCallCandidateExpression FindWith<T>() where T : IActionSource, new()
         {
@@ -55,7 +50,7 @@ namespace FubuMVC.Core.Registration.DSL
         }
 
         /// <summary>
-        /// Find actions with the provided <see cref="IActionSource"/> instance.
+        ///     Find actions with the provided <see cref="IActionSource" /> instance.
         /// </summary>
         public ActionCallCandidateExpression FindWith(IActionSource actionSource)
         {
@@ -64,8 +59,8 @@ namespace FubuMVC.Core.Registration.DSL
         }
 
         /// <summary>
-        /// Finds actions in concrete classes that are suffixed with either "Endpoint" or
-        /// "Endpoints" in the main application assembly
+        ///     Finds actions in concrete classes that are suffixed with either "Endpoint" or
+        ///     "Endpoints" in the main application assembly
         /// </summary>
         /// <returns></returns>
         public ActionCallCandidateExpression IncludeClassesSuffixedWithEndpoint()
@@ -75,9 +70,8 @@ namespace FubuMVC.Core.Registration.DSL
 
         public ActionCallCandidateExpression DisableDefaultActionSource()
         {
-            _configuration.Actions.Sources.RemoveAll(x => x is EndpointActionSource || x is SendsMessageActionSource);
+            _configuration.Actions.Sources.RemoveAll(x => x is EndpointActionSource);
             return this;
         }
-
     }
 }

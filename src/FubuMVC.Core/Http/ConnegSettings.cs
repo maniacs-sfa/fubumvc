@@ -18,7 +18,6 @@ namespace FubuMVC.Core.Http
 
         public ConnegSettings()
         {
-            Rules.AddToEnd<AjaxContinuations>();
             Rules.AddToEnd<StringOutput>();
             Rules.AddToEnd<HtmlTagsRule>();
             Rules.AddToEnd<CustomReadersAndWriters>();

@@ -14,7 +14,6 @@ using FubuMVC.Core.ServiceBus.Registration.Nodes;
 using FubuMVC.Core.ServiceBus.Runtime;
 using FubuMVC.Core.ServiceBus.Sagas;
 using FubuMVC.Core.ServiceBus.ScheduledJobs.Configuration;
-using FubuMVC.Core.ServiceBus.Web;
 using Newtonsoft.Json;
 using StructureMap.Pipeline;
 
@@ -80,9 +79,6 @@ namespace FubuMVC.Core.ServiceBus
         void IFeatureSettings.Apply(FubuRegistry registry)
         {
             if (!Enabled) return;
-
-            registry.Actions.FindWith<SendsMessageActionSource>();
-            registry.Policies.Global.Add<SendsMessageConvention>();
 
             registry.Policies.Global.Add<ApplyScheduledJobRouting>();
             registry.Services.IncludeRegistry<ScheduledJobServicesRegistry>();

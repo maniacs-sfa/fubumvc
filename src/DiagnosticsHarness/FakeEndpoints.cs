@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using FubuMVC.Core;
-using FubuMVC.Core.Ajax;
 using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Continuations;
 
@@ -44,17 +43,6 @@ namespace DiagnosticsHarness
             return team.City + " " + team.Mascot;
         }
 
-        [WrapWith(typeof(DelayWrapper))]
-        public AjaxContinuation delete_team(Team team)
-        {
-            return AjaxContinuation.Successful();
-        }
-
-        [WrapWith(typeof(DelayWrapper))]
-        public AjaxContinuation put_team(Team team)
-        {
-            return AjaxContinuation.Successful();
-        }
     }
 
     public class DelayWrapper : WrappingBehavior

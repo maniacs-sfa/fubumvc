@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FubuMVC.Core;
-using FubuMVC.Core.Ajax;
 using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Http;
 using FubuMVC.Core.Json;
@@ -227,16 +226,7 @@ namespace FubuMVC.IntegrationTesting.Samples
     {
     }
 
-    public class ConnegSampleEndpoints
-    {
-        // Because JsonInput implements the FubuMVC.Core.JsonMessage 
-        // marker interface, this endpoint will be configured as
-        // "Asymmetric Json"
-        public AjaxContinuation post_json_input(JsonInput input)
-        {
-            return AjaxContinuation.Successful();
-        }
-    }
+
 
 
     // SAMPLE: spoofing-current-mimetype

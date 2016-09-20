@@ -54,8 +54,6 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AjaxExtensions.cs" />
-    <Compile Include="Ajax\AjaxContinuationWriter.cs" />
-    <Compile Include="Ajax\AjaxError.cs" />
     <Compile Include="Attributes\ViewSubjectAttribute.cs" />
     <Compile Include="BehaviorChainExtensions.cs" />
     <Compile Include="Behaviors\ActionInvoker.cs" />
@@ -399,11 +397,6 @@
     <Compile Include="ServiceBus\TimeoutRunner.cs" />
     <Compile Include="ServiceBus\TransportSettings.cs" />
     <Compile Include="ServiceBus\TypeExtensions.cs" />
-    <Compile Include="ServiceBus\Web\ISendMessages.cs" />
-    <Compile Include="ServiceBus\Web\SendMessageBehavior.cs" />
-    <Compile Include="ServiceBus\Web\SendsMessage.cs" />
-    <Compile Include="ServiceBus\Web\SendsMessageActionSource.cs" />
-    <Compile Include="ServiceBus\Web\SendsMessageConvention.cs" />
     <Compile Include="Registration\AssemblyFinder.cs" />
     <Compile Include="ClientMessage.cs" />
     <Compile Include="Registration\BehaviorGraphBuilder.cs" />
@@ -511,7 +504,6 @@
     <Compile Include="Registration\ActionSourceAggregator.cs" />
     <Compile Include="Registration\Conventions\DefaultRouteConventionBasedUrlPolicy.cs" />
     <Compile Include="Registration\Conventions\DefaultUrlPolicy.cs" />
-    <Compile Include="Registration\Conventions\OutputBeforeAjaxContinuationPolicy.cs" />
     <Compile Include="Registration\Conventions\UrlPolicies.cs" />
     <Compile Include="Registration\DSL\AppliesToExpression.cs" />
     <Compile Include="Registration\DSL\PolicyAdderExpression.cs" />
@@ -532,7 +524,6 @@
     <Compile Include="Registration\SettingAlteration.cs" />
     <Compile Include="Registration\SettingReplacement.cs" />
     <Compile Include="Registration\SettingsCollection.cs" />
-    <Compile Include="Resources\Conneg\AjaxContinuations.cs" />
     <Compile Include="Resources\Conneg\ConnegGraph.cs" />
     <Compile Include="Resources\Conneg\ConnegRule.cs" />
     <Compile Include="Resources\Conneg\CustomReadersAndWriters.cs" />
@@ -581,7 +572,6 @@
     <Compile Include="Runtime\Conditionals\LambdaConditional.cs" />
     <Compile Include="Runtime\Conditionals\Never.cs" />
     <Compile Include="Behaviors\InterceptExceptionBehavior.cs" />
-    <Compile Include="Ajax\AjaxContinuation.cs" />
     <Compile Include="Caching\IRecordedHttpOutput.cs" />
     <Compile Include="Caching\IRecordedOutput.cs" />
     <Compile Include="Caching\SetContentType.cs" />

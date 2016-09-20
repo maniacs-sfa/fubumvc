@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AboutEndpointIntegrationTester.cs" />
-    <Compile Include="Ajax\AjaxContinuationProcessingTester.cs" />
     <Compile Include="Async\AsyncRouteIntegrationTester.cs" />
     <Compile Include="can_register_and_use_OWIN_middleware_from_a_package.cs" />
     <Compile Include="Conneg\AjaxInputModelBindingIntegrationTester.cs" />
@@ -59,7 +58,6 @@
     <Compile Include="Conneg\Conneg_Can_Choose_Output_Media_Based_on_Mimetypes.cs" />
     <Compile Include="Conneg\Custom_mimetype_correction_policy_usage.cs" />
     <Compile Include="Conneg\OutputFromAnActionThatReturnsStrings.cs" />
-    <Compile Include="Conneg\Output_from_actions_that_return_ajax_continuations.cs" />
     <Compile Include="Conneg\Output_from_Actions_that_return_HtmlTags.cs" />
     <Compile Include="Conneg\Resource_cannot_be_found_handling.cs" />
     <Compile Include="Conneg\Using_custom_media_readers_and_writers.cs" />
@@ -131,7 +129,6 @@
     <Compile Include="ServiceBus\end_to_end_diagnostics_specs.cs" />
     <Compile Include="ServiceBus\Messages.cs" />
     <Compile Include="ServiceBus\PerformanceTester.cs" />
-    <Compile Include="ServiceBus\Publishing\PublishingConfigurationIntegrationTester.cs" />
     <Compile Include="Routing\end_to_end_route_alias_tester.cs" />
     <Compile Include="Samples\ConnegSamples.cs" />
     <Compile Include="Samples\FubuContinuationSamples.cs" />
