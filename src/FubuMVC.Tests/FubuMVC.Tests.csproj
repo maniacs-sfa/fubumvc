@@ -217,16 +217,6 @@
     <Compile Include="Security\Authentication\Windows\WindowsControllerTester.cs" />
     <Compile Include="Security\Authentication\Windows\WindowsSignInRequestTester.cs" />
     <Compile Include="Security\Authorization\RequireRoleTester.cs" />
-    <Compile Include="ServerSentEvents\ChannelTester.cs" />
-    <Compile Include="ServerSentEvents\ChannelWriterTester.cs" />
-    <Compile Include="ServerSentEvents\EventPublisherTester.cs" />
-    <Compile Include="ServerSentEvents\EventQueryFactoryTester.cs" />
-    <Compile Include="ServerSentEvents\ServerEventWriterTester.cs" />
-    <Compile Include="ServerSentEvents\ServerSentEventExtensionIntegratedTester.cs" />
-    <Compile Include="ServerSentEvents\ServicesRegistrationTester.cs" />
-    <Compile Include="ServerSentEvents\SimpleEventQueueTester.cs" />
-    <Compile Include="ServerSentEvents\TopicChannelCacheTester.cs" />
-    <Compile Include="ServerSentEvents\TopicFamilyTester.cs" />
     <Compile Include="ServiceBus\can_establish_a_control_queue.cs" />
     <Compile Include="ServiceBus\Polling\PollingJobChainTester.cs" />
     <Compile Include="ServiceBus\Runtime\Invocation\CompositeContinuationConfigurationTester.cs" />
