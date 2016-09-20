@@ -1,6 +1,4 @@
 ﻿using FubuMVC.Core;
-using FubuMVC.Core.Navigation;
-using FubuMVC.Core.Registration;
 using FubuMVC.Core.Security.Authentication;
 using FubuMVC.Core.Security.Authentication.Saml2;
 using FubuMVC.Core.Security.Authentication.Saml2.Certificates;
