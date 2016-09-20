@@ -90,10 +90,6 @@
     <Compile Include="Diagnostics\Instrumentation\VerboseExecutionLogger.cs" />
     <Compile Include="Diagnostics\PerformanceFubuDiagnostics.cs" />
     <Compile Include="Diagnostics\PollingJobFubuDiagnostics.cs" />
-    <Compile Include="Downloads\DownloadFileModel.cs" />
-    <Compile Include="Downloads\DownloadFileBehavior.cs" />
-    <Compile Include="Downloads\DownloadFileConvention.cs" />
-    <Compile Include="Downloads\DownloadFileNode.cs" />
     <Compile Include="FubuModeExtensions.cs" />
     <Compile Include="Http\Compression\ApplyCompression.cs" />
     <Compile Include="Http\Hosting\IHost.cs" />
@@ -580,11 +576,6 @@
     <Compile Include="Diagnostics\TypeExtensions.cs" />
     <Compile Include="Attributes\DoNotAutoImportAttribute.cs" />
     <Compile Include="Diagnostics\FubuApplicationDescriber.cs" />
-    <Compile Include="Environment\CanWriteToFolder.cs" />
-    <Compile Include="Environment\FileExists.cs" />
-    <Compile Include="Environment\FolderExists.cs" />
-    <Compile Include="Environment\IEnvironmentRequirement.cs" />
-    <Compile Include="Environment\IEnvironmentRequirements.cs" />
     <Compile Include="Assets\FileWatcherManifest.cs" />
     <Compile Include="Attributes\FubuModuleAttribute.cs" />
     <Compile Include="Attributes\FubuPartialAttribute.cs" />

@@ -106,10 +106,6 @@
     <Compile Include="Docs\Topics\Authorization\PurchasedProductPolicy.cs" />
     <Compile Include="Docs\Topics\Authorization\PurchaseProductAuthorizationPolicy.cs" />
     <Compile Include="Docs\Topics\Authorization\RoleModelAuthorizationPolicy.cs" />
-    <Compile Include="Downloads\when_downloading_a_file_without_forcing_browser_dialog.cs" />
-    <Compile Include="Downloads\when_downloading_a_file_with_force_browser_dialog.cs" />
-    <Compile Include="Environment\FileExistsTester.cs" />
-    <Compile Include="Environment\FolderExistsTester.cs" />
     <Compile Include="FixieConventions.cs" />
     <Compile Include="FubuApplication_registers_the_FubuRuntime_in_bootstrap.cs" />
     <Compile Include="FubuExtensionFinderTester.cs" />

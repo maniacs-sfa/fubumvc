@@ -1,6 +1,5 @@
 using System;
 using System.Reflection;
-using FubuMVC.Core.Environment;
 
 namespace FubuMVC.Core.Diagnostics.Packaging
 {
@@ -41,7 +40,6 @@ namespace FubuMVC.Core.Diagnostics.Packaging
         {
             if (target is IActivator) return typeof (IActivator).Name;
             if (target is Assembly) return typeof (Assembly).Name;
-            if (target is IEnvironmentRequirement) return typeof (IEnvironmentRequirement).Name;
 
             return target.GetType().Name;
         }
