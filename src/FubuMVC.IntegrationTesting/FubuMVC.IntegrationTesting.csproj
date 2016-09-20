@@ -53,7 +53,6 @@
     <Compile Include="Aggregation\aggregator_integration_tester.cs" />
     <Compile Include="Ajax\AjaxContinuationProcessingTester.cs" />
     <Compile Include="Async\AsyncRouteIntegrationTester.cs" />
-    <Compile Include="Authorization\end_to_end_authorization_tester.cs" />
     <Compile Include="can_register_and_use_OWIN_middleware_from_a_package.cs" />
     <Compile Include="Conneg\AjaxInputModelBindingIntegrationTester.cs" />
     <Compile Include="Conneg\ConnegFixture.cs" />
@@ -72,13 +71,7 @@
     <Compile Include="Diagnostics\end_to_end_execution_log_tracing_for_http_requests.cs" />
     <Compile Include="Diagnostics\serving_up_embedded_diagnostic_assets.cs" />
     <Compile Include="DifferentInput.cs" />
-    <Compile Include="EndpointServiceIntegratedSmokeTester.cs" />
     <Compile Include="FixieConvention.cs" />
-    <Compile Include="Fixtures\LockedOutLogicFixture.cs" />
-    <Compile Include="Fixtures\LoginAuditingFixture.cs" />
-    <Compile Include="Fixtures\LoginScreenFixture.cs" />
-    <Compile Include="Fixtures\ModelFixture.cs" />
-    <Compile Include="Fixtures\OtherScreenFixture.cs" />
     <Compile Include="Fixtures\ServiceBus\Basic\ServiceBusActionFixture.cs" />
     <Compile Include="Fixtures\ServiceBus\Basic\ServiceBusNodeFixture.cs" />
     <Compile Include="Fixtures\ServiceBus\Basic\ServiceBusNodes.cs" />
@@ -133,13 +126,6 @@
     <Compile Include="QuitEndpoint.cs" />
     <Compile Include="Runtime\Files\FileChangeWatcher_integration_tester.cs" />
     <Compile Include="ScheduledJobs\ScheduledJobIntegrationTester.cs" />
-    <Compile Include="Security\Authentication\authenticated_request_against_an_authenticated_route.cs" />
-    <Compile Include="Security\Authentication\AuthenticationHarness.cs" />
-    <Compile Include="Security\Authentication\SampleController.cs" />
-    <Compile Include="Security\Authentication\unauthenticated_ajax_request_against_an_authenticated_route.cs" />
-    <Compile Include="Security\Authentication\unauthenticated_request_against_an_authenticated_route.cs" />
-    <Compile Include="Security\Authentication\unauthenticated_request_against_an_unauthenticated_route.cs" />
-    <Compile Include="Security\Authorization\AuthorizationPreviewServiceIntegratedTester.cs" />
     <Compile Include="Serenity\BrowserType_selection_tester.cs" />
     <Compile Include="Serenity\Fixtures\JavascriptErrorFixture.cs" />
     <Compile Include="Serenity\Fixtures\OpenScreenFixture.cs" />
@@ -167,10 +153,6 @@
     <ProjectReference Include="..\FubuMVC.LightningQueues\FubuMVC.LightningQueues.csproj">
       <Project>{f151167c-4736-4c67-9697-7876574c05d0}</Project>
       <Name>FubuMVC.LightningQueues</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FubuMVC.RavenDb\FubuMVC.RavenDb.csproj">
-      <Project>{02441e35-668b-4713-9279-bd51948b95eb}</Project>
-      <Name>FubuMVC.RavenDb</Name>
     </ProjectReference>
     <ProjectReference Include="..\FubuMVC.Tests\FubuMVC.Tests.csproj">
       <Project>{FEB91F9F-ECE2-480C-B39C-A44BBF1F7B01}</Project>

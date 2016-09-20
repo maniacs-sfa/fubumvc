@@ -64,7 +64,6 @@ namespace FubuMVC.Core.Registration
             SetServiceIfNone<IDisplayFormatter, DisplayFormatter>();
             SetServiceIfNone<IChainResolver, ChainResolutionCache>().Singleton();
 
-            SetServiceIfNone<IEndpointService, EndpointService>();
 
 
             SetServiceIfNone<ITypeDescriptorCache, TypeDescriptorCache>().Singleton();

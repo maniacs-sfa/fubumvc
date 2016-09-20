@@ -2,7 +2,6 @@ using System.Linq;
 using FubuMVC.Core;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Resources.Conneg;
-using FubuMVC.Core.Security.Authorization;
 using NUnit.Framework;
 using Shouldly;
 
@@ -22,13 +21,6 @@ namespace FubuMVC.Tests.Resources.Conneg
             theGraph = BehaviorGraph.BuildFrom(registry);
         }
 
-        [Test]
-        public void input_is_first_even_with_authorization()
-        {
-            theGraph.ChainFor<PlacementController>(x => x.post_payload(null))
-                .Top.ShouldBeOfType<InputNode>()
-                .Next.ShouldBeOfType<AuthorizationNode>();
-        }
 
         [Test]
         public void output_is_last()
@@ -45,7 +37,6 @@ namespace FubuMVC.Tests.Resources.Conneg
             return "hello";
         }
 
-        [AllowRole("some role")]
         public PlacementPayload post_payload(PlacementPayload payload)
         {
             return payload;

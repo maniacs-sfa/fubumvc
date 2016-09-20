@@ -1,6 +1,5 @@
 ﻿using System;
 using FubuMVC.Core.Localization;
-using FubuMVC.Core.Security.Authentication;
 using FubuMVC.Core.ServiceBus;
 using FubuMVC.Core.ServiceBus.Configuration;
 using FubuMVC.Core.ServiceBus.Runtime.Serializers;
@@ -25,17 +24,6 @@ namespace FubuMVC.Core.Registration.DSL
             get
             {
                 return new Feature<DiagnosticsSettings, TraceLevel>(_parent, (settings, level) => settings.TraceLevel = level);
-            }
-        }
-
-        /// <summary>
-        /// Configure and enable the built in authentication features
-        /// </summary>
-        public Feature<AuthenticationSettings, bool> Authentication
-        {
-            get
-            {
-                return new Feature<AuthenticationSettings, bool>(_parent, (settings, enabled) => settings.Enabled = enabled);
             }
         }
 

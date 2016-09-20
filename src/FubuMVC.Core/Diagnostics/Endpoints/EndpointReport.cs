@@ -6,8 +6,6 @@ using FubuCore.Descriptions;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Resources.Conneg;
 using FubuMVC.Core.Runtime;
-using FubuMVC.Core.Security;
-using FubuMVC.Core.Security.Authorization;
 
 namespace FubuMVC.Core.Diagnostics.Endpoints
 {
@@ -40,7 +38,6 @@ namespace FubuMVC.Core.Diagnostics.Endpoints
                 {"input", InputModel.ToDictionary()},
                 {"origin", Origin},
                 {"accepts", Accepts},
-                {"authorization", Authorization},
                 {"content-type", ContentType},
                 {"output", Output.ToArray()},
                 {"category", UrlCategory},
@@ -153,19 +150,6 @@ namespace FubuMVC.Core.Diagnostics.Endpoints
             }
         }
 
-        public IEnumerable<string> Authorization
-        {
-            get
-            {
-                var authorization = _chain.OfType<AuthorizationNode>().FirstOrDefault();
-                if (authorization == null || !authorization.Policies.Any()) yield break;
-
-                foreach (var policy in authorization.Policies)
-                {
-                    yield return Description.For(policy).Title;
-                }
-            }
-        }
 
         public IEnumerable<string> Wrappers
         {

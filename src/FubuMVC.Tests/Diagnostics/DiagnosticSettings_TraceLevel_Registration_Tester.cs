@@ -18,38 +18,6 @@ using TraceLevel = FubuMVC.Core.TraceLevel;
 
 namespace FubuMVC.Tests.Diagnostics
 {
-    [TestFixture]
-    public class DiagnosticsSettings_apply_authorization_Tester
-    {
-        [Test]
-        public void authorization_rules_from_settings_are_applied()
-        {
-            var authorizedGraph = BehaviorGraph.BuildFrom(r =>
-            {
-                r.Features.Diagnostics.Configure(x =>
-                {
-                    x.TraceLevel = TraceLevel.Verbose;
-                    x.RestrictToRole("admin");
-                });
-            });
-
-            var notAuthorizedGraph = BehaviorGraph.BuildFrom(r =>
-            {
-                r.Features.Diagnostics.Enable(TraceLevel.Verbose);
-
-//                r.AlterSettings<DiagnosticsSettings>(x =>
-//                {
-//                    x.RestrictToRule("admin");
-//                });
-            });
-
-            authorizedGraph.Chains.OfType<DiagnosticChain>()
-                .Each(x => x.Authorization.AllowedRoles().Single().ShouldBe("admin"));
-
-            notAuthorizedGraph.Chains.OfType<DiagnosticChain>()
-                .Each(x => x.Authorization.HasRules().ShouldBeFalse());
-        }
-    }
 
     [TestFixture]
     public class DiagnosticSettings_TraceLevel_Registration_Tester

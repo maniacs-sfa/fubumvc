@@ -5,7 +5,6 @@ using FubuMVC.Core.Http;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Registration.Querying;
 using FubuMVC.Core.Resources.Conneg;
-using FubuMVC.Core.Security.Authorization;
 using FubuMVC.Core.Urls;
 
 namespace FubuMVC.Core.Runtime
@@ -14,16 +13,14 @@ namespace FubuMVC.Core.Runtime
     {
         private readonly IPartialFactory _factory;
         private readonly IFubuRequest _request;
-        private readonly IAuthorizationPreviewService _authorization;
-        private readonly IOutputWriter _writer;
-        private readonly ISetterBinder _setterBinder;
         private readonly IChainResolver _resolver;
+        private readonly ISetterBinder _setterBinder;
+        private readonly IOutputWriter _writer;
 
-        public PartialInvoker(IPartialFactory factory, IFubuRequest request, IAuthorizationPreviewService authorization, IOutputWriter writer, ISetterBinder setterBinder, IChainResolver resolver)
+        public PartialInvoker(IPartialFactory factory, IFubuRequest request, IOutputWriter writer, ISetterBinder setterBinder, IChainResolver resolver)
         {
             _factory = factory;
             _request = request;
-            _authorization = authorization;
             _writer = writer;
             _setterBinder = setterBinder;
             _resolver = resolver;
@@ -33,26 +30,22 @@ namespace FubuMVC.Core.Runtime
         {
             var output = string.Empty;
             var input = _request.Get<T>();
-            if (_authorization.IsAuthorized(input, categoryOrHttpMethod))
-            {
-                output = await invokeWrapped(typeof(T), categoryOrHttpMethod).ConfigureAwait(false);
-            }
+            output = await invokeWrapped(typeof(T), categoryOrHttpMethod).ConfigureAwait(false);
+
             return output;
         }
 
-        public async Task<string> InvokeObject(object model, bool withModelBinding = false, string categoryOrHttpMethod = null)
+        public async Task<string> InvokeObject(object model, bool withModelBinding = false,
+            string categoryOrHttpMethod = null)
         {
             var output = string.Empty;
-            if (_authorization.IsAuthorized(model))
-            {
-                var requestType = model.GetType();
-                if (withModelBinding)
-                {
-                    _setterBinder.BindProperties(requestType, model);
-                }
-                _request.Set(requestType, model);
-                output = await invokeWrapped(requestType, categoryOrHttpMethod).ConfigureAwait(false);
-            }
+
+            var requestType = model.GetType();
+            if (withModelBinding)
+                _setterBinder.BindProperties(requestType, model);
+            _request.Set(requestType, model);
+            output = await invokeWrapped(requestType, categoryOrHttpMethod).ConfigureAwait(false);
+
             return output;
         }
 
@@ -75,9 +68,7 @@ namespace FubuMVC.Core.Runtime
         {
             _request.Set(OutputPartialBehavior.None);
             if (input != null)
-            {
                 _request.Set(chain.InputType(), input);
-            }
 
             try
             {
@@ -96,7 +87,7 @@ namespace FubuMVC.Core.Runtime
 
         private async Task<string> invokeWrapped(Type requestType, string categoryOrHttpMethod = null)
         {
-            var chain = _resolver.FindUniqueByType(requestType, category: categoryOrHttpMethod ?? Categories.VIEW);
+            var chain = _resolver.FindUniqueByType(requestType, categoryOrHttpMethod ?? Categories.VIEW);
             var partial = _factory.BuildPartial(chain);
 
             var output = await _writer.Record(() => partial.InvokePartial()).ConfigureAwait(false);

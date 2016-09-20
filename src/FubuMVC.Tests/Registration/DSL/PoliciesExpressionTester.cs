@@ -3,7 +3,6 @@ using FubuMVC.Core;
 using FubuMVC.Core.Behaviors;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Nodes;
-using FubuMVC.Core.Security.Authorization;
 using FubuMVC.Tests.Registration.Conventions;
 using Shouldly;
 using NUnit.Framework;
@@ -12,71 +11,6 @@ using System.Threading.Tasks;
 
 namespace FubuMVC.Tests.Registration.DSL
 {
-    [TestFixture]
-    public class when_applying_policies_for_wrappers_and_ordering
-    {
-        private BehaviorGraph graph;
-
-        [SetUp]
-        public void SetUp()
-        {
-            var registry = new FubuRegistry();
-            registry.Actions.IncludeType<OrderingPolicyController>();
-
-            registry.Policies.Local.Configure(g => g.WrapAllWith<OPWrapper1>());
-
-            registry.Policies.Global.Reorder(policy => {
-                policy.ThisWrapperBeBefore<OPWrapper1>();
-                policy.CategoryMustBeAfter = BehaviorCategory.Authorization;
-            });
-
-            graph = BehaviorGraph.BuildFrom(registry);
-        }
-
-        
-        [Test]
-        public void move_behavior_before_authorization()
-        {
-            // Ordinarily, AuthorizationNode would be before any other behavior wrappers
-
-            var chain = graph.ChainFor<OrderingPolicyController>(x => x.M1());
-            chain.First().ShouldBeOfType<Wrapper>().BehaviorType.ShouldBe(typeof(OPWrapper1));
-            chain.ToList()[1].ShouldBeOfType<AuthorizationNode>();
-        }
-    }
-
-    [TestFixture]
-    public class when_defining_a_new_reordering_rule_inline
-    {
-        private BehaviorGraph graph;
-
-        [SetUp]
-        public void SetUp()
-        {
-            var registry = new FubuRegistry();
-            registry.Actions.IncludeType<OrderingPolicyController>();
-
-            registry.Policies.Local.Configure(g => g.WrapAllWith<OPWrapper1>());
-
-            registry.Policies.Global.Reorder(x =>
-            {
-                x.ThisWrapperBeBefore<OPWrapper1>();
-                x.ThisNodeMustBeAfter<AuthorizationNode>();
-            });
-
-            graph = BehaviorGraph.BuildFrom(registry);
-        }
-
-        [Test]
-        public void move_behavior_before_authorization()
-        {
-            // Ordinarily, AuthorizationNode would be before any other behavior wrappers
-
-            var chain = graph.ChainFor<OrderingPolicyController>(x => x.M1());
-            chain.First().ShouldBeOfType<Wrapper>().BehaviorType.ShouldBe(typeof(OPWrapper1));
-            chain.ToList()[1].ShouldBeOfType<AuthorizationNode>();
-        }
-    }
 
     [TestFixture]
     public class when_adding_an_iconfigurationaction_without_specifying_configuration_type
@@ -109,7 +43,6 @@ namespace FubuMVC.Tests.Registration.DSL
     public class OrderingPolicyController
     {
         [WrapWith(typeof(OPWrapper2), typeof(OPWrapper3))]
-        [AllowRole("R1")]
         public void M1(){}
         public void M2(){}
         public void M3(){}

@@ -8,7 +8,6 @@ using FubuMVC.Core.Http;
 using FubuMVC.Core.Registration.Conventions;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Registration.Services;
-using FubuMVC.Core.Security.Authorization;
 using FubuMVC.Core.ServiceBus.Configuration;
 using FubuMVC.Core.ServiceBus.ErrorHandling;
 using FubuMVC.Core.ServiceBus.Registration;
@@ -179,7 +178,6 @@ namespace FubuMVC.Core.Registration
         public static IEnumerable<ServiceRegistry> DefaultServices(string mode)
         {
             yield return new ModelBindingServicesRegistry();
-            yield return new SecurityServicesRegistry();
             yield return new HttpStandInServiceRegistry();
             yield return new CoreServiceRegistry(mode);
         }

@@ -2,22 +2,12 @@
 using FubuCore;
 using FubuCore.Dates;
 using FubuMVC.Core;
-using FubuMVC.Core.Security.Authorization;
 using StoryTeller;
 
 namespace Serenity.Fixtures
 {
     public class SerenityFixture : Fixture
     {
-        protected void DisableAllSecurity()
-        {
-            Runtime.Get<SecuritySettings>().Disable();
-        }
-
-        protected void EnableAllSecurity()
-        {
-            Runtime.Get<SecuritySettings>().Reset();
-        }
 
         protected FubuRuntime Runtime
         {

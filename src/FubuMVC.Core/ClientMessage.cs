@@ -1,5 +1,4 @@
 ﻿using System;
-using FubuMVC.Core.Security.Authorization;
 
 namespace FubuMVC.Core
 {

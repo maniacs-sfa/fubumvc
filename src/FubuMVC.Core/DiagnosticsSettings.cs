@@ -10,7 +10,6 @@ using FubuMVC.Core.Diagnostics.Runtime;
 using FubuMVC.Core.Http;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Runtime;
-using FubuMVC.Core.Security.Authorization;
 using FubuMVC.Core.ServiceBus.Runtime.Invocation;
 using StructureMap;
 
@@ -19,7 +18,6 @@ namespace FubuMVC.Core
     [Title("Diagnostic Tracing and Authorization Configuration")]
     public class DiagnosticsSettings : DescribesItself, IFeatureSettings
     {
-        public readonly IList<IAuthorizationPolicy> AuthorizationRights = new List<IAuthorizationPolicy>();
         private TraceLevel? _traceLevel;
 
         public DiagnosticsSettings()
@@ -43,7 +41,6 @@ namespace FubuMVC.Core
             description.ShortDescription = "Governs the behavior and verbosity of the runtime diagnostics";
             description.Properties["Tracing Level"] = TraceLevel.ToString();
             description.Properties["Maximum Number of Requests to Keep"] = MaxRequests.ToString();
-            description.AddList("Authorization Rules for Diagnostics", AuthorizationRights);
         }
 
         void IFeatureSettings.Apply(FubuRegistry registry)
@@ -78,11 +75,6 @@ namespace FubuMVC.Core
                 registry.Services.ForSingletonOf<IExecutionLogger>().Use<NulloExecutionLogger>();
                 registry.Services.For<IEnvelopeLifecycle>().Use<EnvelopeLifecycle<EnvelopeContext>>();
             }
-        }
-
-        public void RestrictToRole(string role)
-        {
-            AuthorizationRights.Add(new AllowRole(role));
         }
 
         public void SetIfNone(TraceLevel level)

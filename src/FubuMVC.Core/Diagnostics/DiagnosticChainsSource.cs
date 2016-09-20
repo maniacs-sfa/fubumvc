@@ -37,10 +37,7 @@ namespace FubuMVC.Core.Diagnostics
                 }
                 else
                 {
-                    var diagnosticChain = new DiagnosticChain(action);
-                    diagnosticChain.Authorization.AddPolicies(settings.AuthorizationRights);
-
-                    yield return diagnosticChain;
+                    yield return new DiagnosticChain(action);
                 }
             }
         } 

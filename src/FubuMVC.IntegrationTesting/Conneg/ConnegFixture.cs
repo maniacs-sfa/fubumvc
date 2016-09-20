@@ -25,7 +25,6 @@ namespace FubuMVC.IntegrationTesting.Conneg
             [Default("200")] out int ResponseCode
             )
         {
-            DisableAllSecurity();
 
             var input = new XmlJsonHtmlMessage
             {
@@ -40,7 +39,6 @@ namespace FubuMVC.IntegrationTesting.Conneg
                     url = url.AppendUrl(QueryString);
                 }
 
-                _.Security.Disable();
                 _.IgnoreStatusCode();
                 _.Post.Url(url);
 

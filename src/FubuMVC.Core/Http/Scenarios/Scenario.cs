@@ -11,7 +11,6 @@ using FubuCore.Reflection;
 using FubuMVC.Core.Http.Owin;
 using FubuMVC.Core.Json;
 using FubuMVC.Core.Runtime;
-using FubuMVC.Core.Security.Authorization;
 using FubuMVC.Core.Urls;
 
 namespace FubuMVC.Core.Http.Scenarios
@@ -57,8 +56,6 @@ namespace FubuMVC.Core.Http.Scenarios
             _request.FullUrl(support.RootUrl);
             _request.Environment.Add("scenario-support", _support);
             _request.Accepts("*/*");
-
-            support.Get<SecuritySettings>().Reset();
 
             _response = new Lazy<OwinHttpResponse>(() =>
             {
@@ -134,11 +131,6 @@ namespace FubuMVC.Core.Http.Scenarios
                 _request.HttpMethod("HEAD");
                 return this;
             }
-        }
-
-        public SecuritySettings Security
-        {
-            get { return _support.Get<SecuritySettings>(); }
         }
 
 

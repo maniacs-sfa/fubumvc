@@ -4,12 +4,8 @@ using System.IO;
 using System.Linq;
 using FubuCore;
 using FubuMVC.Core.Http.Hosting;
-using FubuMVC.Core.Security.Authentication;
-using FubuMVC.Core.Security.Authentication.Endpoints;
 using FubuMVC.Core.ServiceBus.Configuration;
 using FubuMVC.Core.ServiceBus.Polling;
-using FubuMVC.RavenDb.Membership;
-using FubuMVC.RavenDb.Reset;
 using NUnit.Framework;
 using Serenity;
 using ServiceNode;
@@ -27,21 +23,7 @@ namespace FubuMVC.IntegrationTesting
 
             ServiceBus.HealthMonitoring.ScheduledExecution(ScheduledExecution.Disabled);
 
-            Import<PersistedMembership<User>>();
-
-            Features.Authentication.Configure(_ =>
-            {
-                _.ExcludeDiagnostics = true;
-                _.Enabled = true;
-            });
-
             HostWith<Katana>(5555);
-
-            Configure(
-                graph =>
-                {
-                    graph.ChainFor<LoginController>(x => x.get_login(null)).Output.Add(new DefaultLoginRequestWriter());
-                });
         }
     }
 
@@ -101,17 +83,9 @@ namespace FubuMVC.IntegrationTesting
 
         protected override void beforeEach(IContainer scope)
         {
-            Retry.Twice(() => TextFileWriter.Clear());
+            Retry.Twice(TextFileWriter.Clear);
 
             Runtime.Get<MessageRecorder>().Messages.Clear();
-
-            var browser = scope.GetInstance<IBrowserLifecycle>();
-            if (browser.HasBeenStarted())
-            {
-                scope.GetInstance<NavigationDriver>().NavigateTo<LogoutRequest>();
-            }
-
-            Runtime.Get<ICompleteReset>().ResetState();
         }
     }
 }

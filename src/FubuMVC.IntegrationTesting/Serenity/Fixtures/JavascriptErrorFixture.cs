@@ -15,7 +15,6 @@ namespace FubuMVC.IntegrationTesting.Serenity.Fixtures
 
         protected override void beforeRunning()
         {
-            DisableAllSecurity();
             
             throw new NotImplementedException("Redo this");
             //Navigation.NavigateTo<AppErrorEndpoint>(x => x.get_javascript_error());

@@ -10,7 +10,6 @@ using FubuMVC.Core;
 using FubuMVC.Core.Http.Owin;
 using FubuMVC.Core.Http.Owin.Middleware;
 using FubuMVC.Core.Runtime;
-using FubuMVC.Core.Security.Authorization;
 using FubuMVC.Core.ServiceBus;
 using FubuMVC.Core.ServiceBus.Diagnostics;
 using FubuMVC.Core.ServiceBus.TestSupport;
@@ -54,7 +53,6 @@ namespace Serenity
             Registry.Services.ReplaceService<ISystemTime, SystemTime>().Singleton();
             Registry.Services.ReplaceService<IClock, Clock>().Singleton();
             Registry.Features.Diagnostics.Enable(TraceLevel.Verbose);
-            Registry.Services.ForSingletonOf<SecuritySettings>();
             Registry.Services.For<IAfterNavigation>().Use<NulloAfterNavigation>();
             Registry.Services.ForSingletonOf<IBrowserLifecycle>().Use("Browser Lifecycle", () =>
             {
@@ -225,7 +223,6 @@ namespace Serenity
 
 
             Runtime.Get<IClock>().As<Clock>().Live();
-            _factory.Get<SecuritySettings>().Reset();
             _factory.StartNewScope();
 
 
@@ -262,7 +259,6 @@ namespace Serenity
             {
                 _runtime = new FubuRuntime(Registry);
                 _factory = _runtime.Get<IServiceFactory>().As<StructureMapServiceFactory>();
-                _factory.Get<SecuritySettings>().Reset(); // force it to be created from the parent
 
                 if (_runtime.Get<TransportSettings>().Enabled)
                 {

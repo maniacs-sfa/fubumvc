@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using FubuCore;
 using FubuCore.Binding;
 using FubuCore.Binding.InMemory;
@@ -21,8 +20,6 @@ using FubuMVC.Core.Runtime.Aggregation;
 using FubuMVC.Core.Runtime.Conditionals;
 using FubuMVC.Core.Runtime.Files;
 using FubuMVC.Core.Runtime.SessionState;
-using FubuMVC.Core.Security;
-using FubuMVC.Core.Security.Authorization;
 using FubuMVC.Core.Urls;
 using NUnit.Framework;
 using StructureMap;
@@ -68,7 +65,6 @@ namespace FubuMVC.Tests
                 _.DefaultSingletonIs<IClientMessageCache, ClientMessageCache>();
 
                 _.DefaultRegistrationIs<IDisplayFormatter, DisplayFormatter>();
-                _.DefaultRegistrationIs<IEndpointService, EndpointService>();
                 _.DefaultRegistrationIs<IFileSystem, FileSystem>();
 
                 _.ShouldHaveRegistration<ILogModifier, LogRecordModifier>();
@@ -88,7 +84,6 @@ namespace FubuMVC.Tests
                 _.DefaultRegistrationIs<IResourceNotFoundHandler, DefaultResourceNotFoundHandler>();
 
 
-
                 // Conditionals
                 _.DefaultRegistrationIs<IContinuationProcessor, ContinuationProcessor>();
                 _.DefaultRegistrationIs<IConditionalService, ConditionalService>();
@@ -96,18 +91,10 @@ namespace FubuMVC.Tests
                 // Diagnostics
                 _.DefaultSingletonIs<IDiagnosticAssets, DiagnosticAssetsCache>();
 
-                // Security
-                _.DefaultRegistrationIs<IAuthenticationContext, WebAuthenticationContext>();
-                _.DefaultRegistrationIs<ISecurityContext, WebSecurityContext>();
-                _.DefaultRegistrationIs<IAuthorizationPreviewService, AuthorizationPreviewService>();
-                _.DefaultRegistrationIs<IChainAuthorizor, ChainAuthorizor>();
-                _.DefaultRegistrationIs<IAuthorizationFailureHandler, DefaultAuthorizationFailureHandler>();
-
 
                 // Json
                 _.DefaultRegistrationIs<IJsonSerializer, NewtonSoftJsonSerializer>();
             }
         }
-
     }
 }

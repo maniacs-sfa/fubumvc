@@ -11,7 +11,6 @@ using FubuMVC.Core.Http;
 using FubuMVC.Core.Registration.Conventions;
 using FubuMVC.Core.Resources.Conneg;
 using FubuMVC.Core.Runtime;
-using FubuMVC.Core.Security.Authorization;
 using FubuMVC.Core.Urls;
 using StructureMap.Pipeline;
 
@@ -30,9 +29,6 @@ namespace FubuMVC.Core.Registration.Nodes
         private readonly IList<IBehaviorInvocationFilter> _filters = new List<IBehaviorInvocationFilter>();
         private readonly Lazy<InputNode> _input;
         private Lazy<OutputNode> _output;
-
-        private readonly Lazy<AuthorizationNode> _authorization =
-            new Lazy<AuthorizationNode>(() => new AuthorizationNode());
 
         public BehaviorChain()
         {
@@ -90,11 +86,6 @@ namespace FubuMVC.Core.Registration.Nodes
                 outputNode.UseSettings(settings);
 
                 AddToEnd(outputNode);
-            }
-
-            if (_authorization.IsValueCreated && Authorization.HasRules())
-            {
-                Prepend(_authorization.Value);
             }
 
             if (InputType() != null)
@@ -158,13 +149,6 @@ namespace FubuMVC.Core.Registration.Nodes
         public bool IsPartialOnly { get; set; }
 
 
-        /// <summary>
-        ///   Model of the authorization rules for this BehaviorChain
-        /// </summary>
-        public IAuthorizationNode Authorization
-        {
-            get { return _authorization.Value; }
-        }
 
         /// <summary>
         ///   Categorizes this BehaviorChain for the IUrlRegistry and 
