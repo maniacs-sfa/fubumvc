@@ -1,7 +1,6 @@
 using FubuCore.Binding;
 using FubuCore.Binding.InMemory;
 using FubuMVC.Core.Http;
-using FubuMVC.Core.Http.AspNet;
 using FubuMVC.Core.Resources.PathBased;
 using FubuMVC.Core.Runtime;
 
@@ -20,7 +19,6 @@ namespace FubuMVC.Core.Registration.Services
             // STrictly a standin for testing purposes
             SetServiceIfNone<IBindingContext, BindingContext>();
 
-            AddService<IConverterFamily, AspNetObjectConversionFamily>();
             SetServiceIfNone<IBindingLogger, NulloBindingLogger>();
 
             AddService<IConverterFamily, AspNetPassthroughConverter>();

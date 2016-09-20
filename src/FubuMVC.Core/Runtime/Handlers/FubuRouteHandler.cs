@@ -1,6 +1,6 @@
+using System;
 using System.Web;
 using System.Web.Routing;
-using FubuMVC.Core.Http.AspNet;
 
 namespace FubuMVC.Core.Runtime.Handlers
 {
@@ -17,8 +17,7 @@ namespace FubuMVC.Core.Runtime.Handlers
 
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
-            var arguments = new AspNetServiceArguments(requestContext);
-            return _handlerSource.Build(_invoker, arguments, requestContext.RouteData.Values);
+            throw new NotSupportedException();
         }
 
         public IBehaviorInvoker Invoker

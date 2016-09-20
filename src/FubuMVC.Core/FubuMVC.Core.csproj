@@ -610,7 +610,6 @@
     <Compile Include="Registration\CoreServiceRegistry.cs" />
     <Compile Include="Http\CurrentRequestFullUrlPropertyBinder.cs" />
     <Compile Include="Http\CurrentRequestRelativeUrlPropertyBinder.cs" />
-    <Compile Include="Http\AspNet\RequestPropertyValueSource.cs" />
     <Compile Include="Http\HttpStandinServiceRegistry.cs" />
     <Compile Include="Http\RequestDataExtensions.cs" />
     <Compile Include="Http\RouteDataValues.cs" />
@@ -682,10 +681,6 @@
     <Compile Include="StructureMap\StructureMapServiceFactory.cs" />
     <Compile Include="StructureMap\StructureMapServiceLocator.cs" />
     <Compile Include="Attributes\TagAttribute.cs" />
-    <Compile Include="Http\AspNet\AspNetHttpResponse.cs" />
-    <Compile Include="Http\AspNet\AspNetHttpRequest.cs" />
-    <Compile Include="Http\AspNet\ASPNetObjectConversionFamily.cs" />
-    <Compile Include="Http\AspNet\AspNetServiceArguments.cs" />
     <Compile Include="Http\Cookies\Cookie.cs" />
     <Compile Include="Http\CurrentChain.cs" />
     <Compile Include="Http\CurrentMimeType.cs" />
