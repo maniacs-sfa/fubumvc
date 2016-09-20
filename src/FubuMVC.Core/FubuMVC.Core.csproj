@@ -499,12 +499,8 @@
     <Compile Include="Json\AggregatedRegistry.cs" />
     <Compile Include="Json\FubuJsonConverter.cs" />
     <Compile Include="Json\IJsonSerializer.cs" />
-    <Compile Include="Json\JObjectValues.cs" />
-    <Compile Include="Json\JsonBindingAttribute.cs" />
     <Compile Include="Json\JTokenKeyValuePairExtensions.cs" />
-    <Compile Include="Json\NewtonSoftBindingReader.cs" />
     <Compile Include="Json\NewtonsoftJsonFormatter.cs" />
-    <Compile Include="Json\NewtonSoftJsonReader.cs" />
     <Compile Include="Json\NewtonsoftJsonSerializer.cs" />
     <Compile Include="Runtime\LambdaActivator.cs" />
     <Compile Include="Attributes\NoDiagnosticsAttribute.cs" />

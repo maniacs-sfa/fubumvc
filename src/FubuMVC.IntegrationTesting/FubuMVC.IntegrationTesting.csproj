@@ -98,7 +98,6 @@
     <Compile Include="Http\partial_invocations.cs" />
     <Compile Include="Http\reading_and_writing_http_headers_and_responses_with_OWIN.cs" />
     <Compile Include="Http\compression_testing.cs" />
-    <Compile Include="Json\IntegratedJsonBindingTester.cs" />
     <Compile Include="map_files_are_whitelisted.cs" />
     <Compile Include="Owin\binding_against_form_data.cs" />
     <Compile Include="Owin\binding_against_querystring_values.cs" />
