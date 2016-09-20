@@ -12,7 +12,7 @@ namespace FubuMVC.Core.Resources.Conneg
     public class ConnegGraph
     {
         public readonly IList<Type> Writers = new List<Type>();
-        public readonly IList<Type> Readers = new List<Type>{typeof(AggregatedQueryReader)};
+        public readonly IList<Type> Readers = new List<Type>();
 
         public static Task<ConnegGraph> Build(BehaviorGraph behaviorGraph)
         {

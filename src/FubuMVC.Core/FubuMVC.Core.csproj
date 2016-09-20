@@ -103,6 +103,11 @@
     <Compile Include="Runtime\Files\FileChangeWatcher.cs" />
     <Compile Include="Runtime\Files\IChangeSetHandler.cs" />
     <Compile Include="Runtime\Files\TrackedSet.cs" />
+    <Compile Include="Runtime\IPartialFactory.cs" />
+    <Compile Include="Runtime\IPartialInvoker.cs" />
+    <Compile Include="Runtime\PartialChainSwitcher.cs" />
+    <Compile Include="Runtime\PartialFactory.cs" />
+    <Compile Include="Runtime\PartialInvoker.cs" />
     <Compile Include="ServiceBus\Configuration\ByTaskScheduleMaker.cs" />
     <Compile Include="ServiceBus\Configuration\ByThreadScheduleMaker.cs" />
     <Compile Include="ServiceBus\Configuration\ChannelGraph.cs" />
@@ -420,7 +425,6 @@
     <Compile Include="Diagnostics\BehaviorChainExtensions.cs" />
     <Compile Include="Diagnostics\ChainFubuDiagnostics.cs" />
     <Compile Include="Diagnostics\ChildDescriptionTag.cs" />
-    <Compile Include="Diagnostics\ClientMessagesFubuDiagnostics.cs" />
     <Compile Include="Diagnostics\DescriptionPropertyTag.cs" />
     <Compile Include="Diagnostics\DescriptionBodyTag.cs" />
     <Compile Include="Diagnostics\DiagnosticChain.cs" />
@@ -470,13 +474,6 @@
     <Compile Include="Http\HeaderValueSource.cs" />
     <Compile Include="Http\IMimetypeCorrection.cs" />
     <Compile Include="Http\Owin\FubuOwinHost.cs" />
-    <Compile Include="Http\Owin\Middleware\FilteredOwinMiddleware.cs" />
-    <Compile Include="Http\Owin\Middleware\HtmlHeadInjectionMiddleware.cs" />
-    <Compile Include="Http\Owin\Middleware\IOwinMiddleware.cs" />
-    <Compile Include="Http\Owin\Middleware\MiddlewareChain.cs" />
-    <Compile Include="Http\Owin\Middleware\MiddlewareContinuation.cs" />
-    <Compile Include="Http\Owin\Middleware\MiddlewareDeactivator.cs" />
-    <Compile Include="Http\Owin\Middleware\MiddlewareNode.cs" />
     <Compile Include="Http\Owin\OwinConstants.cs" />
     <Compile Include="Http\Owin\OwinContext.cs" />
     <Compile Include="Http\Owin\OwinHeaderSettings.cs" />
@@ -491,8 +488,6 @@
     <Compile Include="Http\Scenarios\ScenarioAssertionException.cs" />
     <Compile Include="IActivator.cs" />
     <Compile Include="IDeactivator.cs" />
-    <Compile Include="Json\AggregatedQueryReader.cs" />
-    <Compile Include="Json\AggregatedRegistry.cs" />
     <Compile Include="Json\FubuJsonConverter.cs" />
     <Compile Include="Json\IJsonSerializer.cs" />
     <Compile Include="Json\JTokenKeyValuePairExtensions.cs" />
@@ -552,17 +547,6 @@
     <Compile Include="Resources\Conneg\ConnegRules.cs" />
     <Compile Include="Resources\Conneg\StringOutput.cs" />
     <Compile Include="Resources\Conneg\WriterChoice.cs" />
-    <Compile Include="Runtime\Aggregation\AggregatedQuery.cs" />
-    <Compile Include="Runtime\Aggregation\AggregateRequest.cs" />
-    <Compile Include="Runtime\Aggregation\AggregationResponse.cs" />
-    <Compile Include="Runtime\Aggregation\Aggregator.cs" />
-    <Compile Include="Runtime\Aggregation\ClientMessagePath.cs" />
-    <Compile Include="Runtime\Aggregation\ClientMessageCache.cs" />
-    <Compile Include="Runtime\Aggregation\ClientQuery.cs" />
-    <Compile Include="Runtime\Aggregation\ClientResponse.cs" />
-    <Compile Include="Runtime\Aggregation\IAggregator.cs" />
-    <Compile Include="Runtime\Aggregation\IAggregatorSource.cs" />
-    <Compile Include="Runtime\Aggregation\IClientMessageCache.cs" />
     <Compile Include="Runtime\AjaxAwareJsonSerializer.cs" />
     <Compile Include="Runtime\Conditionals\IConditionalService.cs" />
     <Compile Include="Runtime\ExceptionHandlingObserver.cs" />
@@ -588,8 +572,6 @@
     <Compile Include="Runtime\Logging\StartedRecordingOutput.cs" />
     <Compile Include="Runtime\Logging\WriteCookieReport.cs" />
     <Compile Include="Runtime\Logging\WriteToStreamReport.cs" />
-    <Compile Include="Runtime\PartialChainSwitcher.cs" />
-    <Compile Include="Runtime\PartialFactory.cs" />
     <Compile Include="Runtime\SetValueReport.cs" />
     <Compile Include="Registration\EndpointActionSource.cs" />
     <Compile Include="Runtime\Conditionals\Always.cs" />
@@ -746,7 +728,6 @@
     <Compile Include="Http\IHttpResponse.cs" />
     <Compile Include="Runtime\InMemoryOutputWriter.cs" />
     <Compile Include="Runtime\IOutputState.cs" />
-    <Compile Include="Runtime\IPartialFactory.cs" />
     <Compile Include="Runtime\ISessionState.cs" />
     <Compile Include="Runtime\NormalState.cs" />
     <Compile Include="Runtime\OutputWriterExtensions.cs" />
@@ -755,8 +736,6 @@
     <Compile Include="Runtime\UnknownExtensionException.cs" />
     <Compile Include="Registration\ModifyChainAttribute.cs" />
     <Compile Include="Registration\Routes\StandardRoutePolicy.cs" />
-    <Compile Include="Runtime\IPartialInvoker.cs" />
-    <Compile Include="Runtime\PartialInvoker.cs" />
     <Compile Include="Registration\Querying\ChainInterrogator.cs" />
     <Compile Include="Attributes\UrlAliasAttribute.cs" />
     <Compile Include="UrlContext.cs" />

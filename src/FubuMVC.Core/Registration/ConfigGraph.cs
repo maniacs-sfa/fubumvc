@@ -179,7 +179,7 @@ namespace FubuMVC.Core.Registration
         {
             yield return new ModelBindingServicesRegistry();
             yield return new HttpStandInServiceRegistry();
-            yield return new CoreServiceRegistry(mode);
+            yield return new CoreServiceRegistry();
         }
 
         public void BuildLocal(BehaviorGraph graph, IPerfTimer timer)

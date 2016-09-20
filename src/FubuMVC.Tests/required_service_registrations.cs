@@ -16,7 +16,6 @@ using FubuMVC.Core.Registration.Querying;
 using FubuMVC.Core.Resources.Conneg;
 using FubuMVC.Core.Resources.PathBased;
 using FubuMVC.Core.Runtime;
-using FubuMVC.Core.Runtime.Aggregation;
 using FubuMVC.Core.Runtime.Conditionals;
 using FubuMVC.Core.Runtime.Files;
 using FubuMVC.Core.Runtime.SessionState;
@@ -48,7 +47,6 @@ namespace FubuMVC.Tests
 
 
                 // Core services
-                _.DefaultRegistrationIs<IAggregator, Aggregator>();
                 _.DefaultRegistrationIs<IFubuRequestContext, FubuRequestContext>();
                 _.DefaultRegistrationIs<IRequestData, FubuMvcRequestData>();
                 _.DefaultRegistrationIs<IExceptionHandlingObserver, ExceptionHandlingObserver>();
@@ -62,7 +60,6 @@ namespace FubuMVC.Tests
 
 
                 _.DefaultSingletonIs<IChainResolver, ChainResolutionCache>();
-                _.DefaultSingletonIs<IClientMessageCache, ClientMessageCache>();
 
                 _.DefaultRegistrationIs<IDisplayFormatter, DisplayFormatter>();
                 _.DefaultRegistrationIs<IFileSystem, FileSystem>();

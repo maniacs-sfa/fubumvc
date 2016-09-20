@@ -11,12 +11,10 @@ using FubuMVC.Core.Diagnostics;
 using FubuMVC.Core.Diagnostics.Assets;
 using FubuMVC.Core.Http;
 using FubuMVC.Core.Http.Cookies;
-using FubuMVC.Core.Http.Owin.Middleware;
 using FubuMVC.Core.Json;
 using FubuMVC.Core.Registration.Querying;
 using FubuMVC.Core.Resources.Conneg;
 using FubuMVC.Core.Runtime;
-using FubuMVC.Core.Runtime.Aggregation;
 using FubuMVC.Core.Runtime.Conditionals;
 using FubuMVC.Core.Runtime.SessionState;
 using FubuMVC.Core.Urls;
@@ -28,11 +26,8 @@ namespace FubuMVC.Core.Registration
     /// </summary>
     public class CoreServiceRegistry : ServiceRegistry
     {
-        public CoreServiceRegistry(string mode)
+        public CoreServiceRegistry()
         {
-            AddService<IDeactivator, MiddlewareDeactivator>();
-
-            SetServiceIfNone<IAggregator, Aggregator>();
 
             SetServiceIfNone<IRequestData, FubuMvcRequestData>();
 
@@ -57,7 +52,6 @@ namespace FubuMVC.Core.Registration
             SetServiceIfNone<IRequestDataProvider, RequestDataProvider>();
 
             SetServiceIfNone<IFubuRequest, FubuRequest>();
-            SetServiceIfNone<IPartialFactory, PartialFactory>();
             SetServiceIfNone<IContinuationProcessor, ContinuationProcessor>();
 
             SetServiceIfNone<IDisplayFormatter, DisplayFormatter>();
@@ -88,7 +82,6 @@ namespace FubuMVC.Core.Registration
 
             SetServiceIfNone<IExceptionHandlingObserver, ExceptionHandlingObserver>();
 
-            SetServiceIfNone<IPartialInvoker, PartialInvoker>();
 
             SetServiceIfNone<ICookies, Cookies>();
 
@@ -96,11 +89,9 @@ namespace FubuMVC.Core.Registration
             SetServiceIfNone<ISettingsProvider, SettingsProvider>();
             AddService<ISettingsSource>(new AppSettingsSettingSource(SettingCategory.environment));
 
-            SetServiceIfNone<IClientMessageCache, ClientMessageCache>().Singleton();
 
             SetServiceIfNone<IJsonSerializer, NewtonSoftJsonSerializer>();
 
-            SetServiceIfNone<IPartialInvoker, PartialInvoker>();
         }
     }
 }

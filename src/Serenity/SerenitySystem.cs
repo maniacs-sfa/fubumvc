@@ -8,7 +8,6 @@ using FubuCore.CommandLine;
 using FubuCore.Dates;
 using FubuMVC.Core;
 using FubuMVC.Core.Http.Owin;
-using FubuMVC.Core.Http.Owin.Middleware;
 using FubuMVC.Core.Runtime;
 using FubuMVC.Core.ServiceBus;
 using FubuMVC.Core.ServiceBus.Diagnostics;
@@ -99,13 +98,7 @@ namespace Serenity
                     .Text("\n\n" + js + "\n\n")
                     .Encoded(false)
                     .ToString();
-            Registry.AlterSettings<OwinSettings>(owin =>
-            {
-                owin.AddMiddleware<HtmlHeadInjectionMiddleware>().Arguments.Set(new InjectionOptions
-                {
-                    Content = c => text
-                });
-            });
+
         }
 
         public BrowserType? DefaultBrowser { get; set; }

@@ -22,7 +22,8 @@ namespace FubuMVC.Core.Http.Owin
             settings = settings ?? runtime.Get<OwinSettings>();
             var host = new FubuOwinHost(runtime.Routes);
             AppFunc inner = host.Invoke;
-            AppFunc appFunc = settings.BuildAppFunc(inner, runtime.Get<IServiceFactory>());
+            IServiceFactory factory = runtime.Get<IServiceFactory>();
+            AppFunc appFunc = inner;
 
             var diagnostics = runtime.Get<DiagnosticsSettings>();
             return diagnostics.WrapAppFunc(runtime, appFunc);

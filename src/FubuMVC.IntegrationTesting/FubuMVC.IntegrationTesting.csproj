@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AboutEndpointIntegrationTester.cs" />
-    <Compile Include="Aggregation\aggregator_integration_tester.cs" />
     <Compile Include="Ajax\AjaxContinuationProcessingTester.cs" />
     <Compile Include="Async\AsyncRouteIntegrationTester.cs" />
     <Compile Include="can_register_and_use_OWIN_middleware_from_a_package.cs" />
@@ -104,7 +103,6 @@
     <Compile Include="Owin\handling_501_responses.cs" />
     <Compile Include="Owin\handling_async_routes.cs" />
     <Compile Include="Owin\handling_a_404.cs" />
-    <Compile Include="Owin\Middleware\HtmlHeadInjectionMiddlewareTester.cs" />
     <Compile Include="Owin\Owin_url_resolution_tester.cs" />
     <Compile Include="Owin\passing_the_FubuMode_into_the_OWIN_host.cs" />
     <Compile Include="Owin\reading_and_writing_json_and_xml_thru_conneg.cs" />
@@ -112,7 +110,6 @@
     <Compile Include="Owin\reading_request_headers.cs" />
     <Compile Include="Owin\reading_route_data.cs" />
     <Compile Include="Owin\specifying_environment_key_values_for_owin.cs" />
-    <Compile Include="Owin\using_custom_middleware.cs" />
     <Compile Include="Owin\writing_a_file_to_output.cs" />
     <Compile Include="Owin\writing_a_non_default_status_code.cs" />
     <Compile Include="Owin\writing_response_headers.cs" />
@@ -155,10 +152,6 @@
     <ProjectReference Include="..\FubuMVC.Tests\FubuMVC.Tests.csproj">
       <Project>{FEB91F9F-ECE2-480C-B39C-A44BBF1F7B01}</Project>
       <Name>FubuMVC.Tests</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OwinBottle\OwinBottle.csproj">
-      <Project>{60b6139b-6bda-4860-a475-9675d47888f7}</Project>
-      <Name>OwinBottle</Name>
     </ProjectReference>
     <ProjectReference Include="..\Serenity\Serenity.csproj">
       <Project>{900a0419-3579-4dae-85be-71a3e4b34239}</Project>
