@@ -3,8 +3,6 @@ using System.Net;
 using System.Threading.Tasks;
 using FubuMVC.Core;
 using FubuMVC.Core.Http;
-using FubuMVC.Core.Http.Hosting;
-using FubuMVC.Core.Projections;
 using FubuMVC.Core.Resources.Conneg;
 using FubuMVC.Core.Runtime;
 using FubuMVC.Core.ServiceBus;
@@ -55,18 +53,6 @@ namespace FubuMVC.IntegrationTesting.Conneg
         }
     }
 
-    public class SomeProjection : Projection<SomeResource>
-    {
-        public SomeProjection()
-        {
-            Value(x => x.Name);
-        }
-
-        public override IEnumerable<string> Mimetypes
-        {
-            get { yield return "some/json"; }
-        }
-    }
 
     public class SomeSpecialEndpoint
     {

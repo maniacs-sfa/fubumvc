@@ -16,7 +16,6 @@ using FubuMVC.Core.Http.Compression;
 using FubuMVC.Core.Http.Cookies;
 using FubuMVC.Core.Http.Owin.Middleware;
 using FubuMVC.Core.Json;
-using FubuMVC.Core.Projections;
 using FubuMVC.Core.Registration.Querying;
 using FubuMVC.Core.Resources.Conneg;
 using FubuMVC.Core.Runtime;
@@ -113,13 +112,6 @@ namespace FubuMVC.Core.Registration
 
             SetServiceIfNone<IJavascriptRouteData, JavascriptRouteData>();
 
-            For(typeof (IValues<>)).Use(typeof (SimpleValues<>));
-            For(typeof (IValueSource<>)).Use(typeof (ValueSource<>));
-
-            SetServiceIfNone<IProjectionRunner, ProjectionRunner>();
-            For(typeof (IProjectionRunner<>)).Use(typeof (ProjectionRunner<>));
-
-            SetServiceIfNone<IProjectionRunner, ProjectionRunner>();
 
             SetServiceIfNone<ISettingsProvider, SettingsProvider>();
             AddService<ISettingsSource>(new AppSettingsSettingSource(SettingCategory.environment));

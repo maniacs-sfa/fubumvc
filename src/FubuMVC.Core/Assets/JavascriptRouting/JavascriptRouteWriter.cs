@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using FubuMVC.Core.Http;
-using FubuMVC.Core.Projections;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Registration.Querying;
 using FubuMVC.Core.Registration.Routes;
@@ -22,27 +21,30 @@ namespace FubuMVC.Core.Assets.JavascriptRouting
 
         public IDictionary<string, object> Write(IEnumerable<JavascriptRoute> routes)
         {
-            var node = new DictionaryMediaNode();
+            var dict = new Dictionary<string, object>();
 
             routes.Each(x => {
-                var child = node.AddChild(x.Name);
-                var chain = x.FindChain(_resolver);
-                child.SetAttribute("name", x.Name);
-                child.SetAttribute("method", x.Method);
+                var child = new Dictionary<string, object>();
+                dict.Add(x.Name, child);
 
-                child.SetAttribute("url", _routeData.ToUrl(chain));
+
+                var chain = x.FindChain(_resolver);
+                child.Add("name", x.Name);
+                child.Add("method", x.Method);
+
+                child.Add("url", _routeData.ToUrl(chain));
 
                 var parameters = _routeData.ToParameters(chain);
                 if (parameters.Any())
                 {
-                    child.SetAttribute("params", parameters);
+                    child.Add("params", parameters);
                 }
                 
 
 
             });
 
-            return node.Values;
+            return dict;
         }
     }
 

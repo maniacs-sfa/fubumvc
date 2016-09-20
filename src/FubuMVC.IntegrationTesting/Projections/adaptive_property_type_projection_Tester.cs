@@ -1,5 +1,4 @@
-﻿using FubuMVC.Core.Projections;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace FubuMVC.IntegrationTesting.Projections
 {
@@ -94,14 +93,6 @@ namespace FubuMVC.IntegrationTesting.Projections
         }
     }
 
-    public class MyAdaptiveProjection : Projection<MyAdaptiveModel>
-    {
-        public MyAdaptiveProjection()
-        {
-            AdaptiveValue(x => x.Subject).Name("subject");
-            Value(x => x.Data).Name("data");
-        }
-    }
 
     public class MyAdaptiveModel
     {
@@ -109,21 +100,7 @@ namespace FubuMVC.IntegrationTesting.Projections
         public object Data { get; set; }
     }
 
-    public class MyFooProjection : Projection<MyFoo>
-    {
-        public MyFooProjection()
-        {
-            Value(x => x.FooName).Name("foo");
-        }
-    }
 
-    public class MyBarProjection : Projection<MyBar>
-    {
-        public MyBarProjection()
-        {
-            Value(x => x.BarName).Name("bar");
-        }
-    }
 
     public class MyFoo
     {

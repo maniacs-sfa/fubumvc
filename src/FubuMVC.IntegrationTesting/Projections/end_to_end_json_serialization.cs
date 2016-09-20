@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using FubuCore;
 using FubuMVC.Core;
-using FubuMVC.Core.Http.Hosting;
-using FubuMVC.Core.Projections;
 using FubuMVC.Core.Runtime;
 using NUnit.Framework;
 
@@ -62,9 +60,7 @@ namespace FubuMVC.IntegrationTesting.Projections
             {
                 var guids = new List<Guid>();
                 for (var i = 0; i < 60000; i++)
-                {
                     guids.Add(Guid.NewGuid());
-                }
                 var input = new LargeInput
                 {
                     Guids = guids,
@@ -85,9 +81,7 @@ namespace FubuMVC.IntegrationTesting.Projections
             {
                 var guids = new List<Guid>();
                 for (var i = 0; i < 10; i++)
-                {
                     guids.Add(Guid.NewGuid());
-                }
                 var input = new SmallInput
                 {
                     ExpectedCount = 10,
@@ -122,14 +116,14 @@ namespace FubuMVC.IntegrationTesting.Projections
 
     public class SmallInput : IJsonTestData
     {
-        public List<Guid> Guids { get; set; }
         public int ExpectedCount { get; set; }
+        public List<Guid> Guids { get; set; }
     }
 
     public class LargeInput : IJsonTestData
     {
-        public List<Guid> Guids { get; set; }
         public int ExpectedCount { get; set; }
+        public List<Guid> Guids { get; set; }
     }
 
     public class JsonSuccess
@@ -143,9 +137,7 @@ namespace FubuMVC.IntegrationTesting.Projections
         {
             var guids = new List<Guid>();
             for (var i = 0; i < 10; i++)
-            {
                 guids.Add(Guid.NewGuid());
-            }
             return new JsonTestData
             {
                 Guids = guids
@@ -156,9 +148,7 @@ namespace FubuMVC.IntegrationTesting.Projections
         {
             var guids = new List<Guid>();
             for (var i = 0; i < 60000; i++)
-            {
                 guids.Add(Guid.NewGuid());
-            }
             return new JsonTestData
             {
                 Guids = guids
@@ -182,19 +172,4 @@ namespace FubuMVC.IntegrationTesting.Projections
         }
     }
 
-    public class JsonTestDataProjection : Projection<JsonTestData>
-    {
-        public JsonTestDataProjection()
-        {
-            Value(x => x.Guids).Name("guids");
-        }
-    }
-
-    public class JsonSuccessProjection : Projection<JsonSuccess>
-    {
-        public JsonSuccessProjection()
-        {
-            Value(x => x.Successful).Name("successful");
-        }
-    }
 }
