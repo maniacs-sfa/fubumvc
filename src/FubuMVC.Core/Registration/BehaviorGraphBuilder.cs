@@ -12,7 +12,6 @@ using FubuMVC.Core.ServiceBus.Monitoring;
 using FubuMVC.Core.ServiceBus.Polling;
 using FubuMVC.Core.ServiceBus.Runtime.Delayed;
 using FubuMVC.Core.ServiceBus.Subscriptions;
-using FubuMVC.Core.Validation;
 
 namespace FubuMVC.Core.Registration
 {
@@ -37,7 +36,6 @@ namespace FubuMVC.Core.Registration
             };
 
             var accessorRules = AccessorRulesCompiler.Compile(graph, perfTimer);
-            var validationCompilation = ValidationCompiler.Compile(graph, perfTimer, registry);
 
 
             var config = registry.Config;
@@ -65,8 +63,8 @@ namespace FubuMVC.Core.Registration
                 (graph.Settings.Get<DiagnosticsSettings>().TraceLevel != TraceLevel.None))
                 perfTimer.Record("Applying Tracing", () => ApplyTracing.Configure(graph));
 
+            accessorRules.Wait(30.Seconds());
 
-            Task.WaitAll(new[] {accessorRules, validationCompilation}, 30.Seconds()).AssertFinished();
 
             return graph;
         }
