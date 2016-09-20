@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 using FubuCore;
-using FubuMVC.Core.Http.Compression;
 using FubuMVC.Core.Http.Cookies;
 using FubuMVC.Core.Http.Headers;
 using FubuMVC.Core.Http.Scenarios;
@@ -187,11 +186,6 @@ namespace FubuMVC.Core.Http.Owin
                 {
                     return pair.Value.Select(x => new Header(pair.Key, x));
                 });
-        }
-
-        public void UseEncoding(IHttpContentEncoding encoding)
-        {
-            // TODO -- Come back to this one. The integration tests can't be done until we do
         }
 
         public Task Write(Func<Stream, Task> output)

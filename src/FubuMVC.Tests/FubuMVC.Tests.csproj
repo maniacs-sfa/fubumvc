@@ -99,8 +99,6 @@
     <Compile Include="FixieConventions.cs" />
     <Compile Include="FubuApplication_registers_the_FubuRuntime_in_bootstrap.cs" />
     <Compile Include="FubuExtensionFinderTester.cs" />
-    <Compile Include="Http\Compression\ContentCompressionExtensionTester.cs" />
-    <Compile Include="Http\Compression\DeflateEncodingTester.cs" />
     <Compile Include="Http\ConnegQuerystringTester.cs" />
     <Compile Include="Http\ConnegSettingsTester.cs" />
     <Compile Include="Http\Cookies\CookieStateTester.cs" />
@@ -112,10 +110,6 @@
     <Compile Include="Http\Cookies\SegmentTester.cs" />
     <Compile Include="Http\CurrentHttpRequestExtensionsTester.cs" />
     <Compile Include="Http\HeaderValueSourceTester.cs" />
-    <Compile Include="Http\Compression\ContentEncodingTester.cs" />
-    <Compile Include="Http\Compression\GZipEncodingTester.cs" />
-    <Compile Include="Http\Compression\HttpContentEncodersTester.cs" />
-    <Compile Include="Http\Compression\HttpContentEncodingFilterTester.cs" />
     <Compile Include="Http\Hosting\fuburuntime_scenario_support_Tester.cs" />
     <Compile Include="Http\Owin\CurrentHttpRequestExtensions_integration_with_OWIN_Tester.cs" />
     <Compile Include="Http\Owin\DictionaryExtensionsTester.cs" />

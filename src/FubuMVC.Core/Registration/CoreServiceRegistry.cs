@@ -10,7 +10,6 @@ using FubuMVC.Core.Continuations;
 using FubuMVC.Core.Diagnostics;
 using FubuMVC.Core.Diagnostics.Assets;
 using FubuMVC.Core.Http;
-using FubuMVC.Core.Http.Compression;
 using FubuMVC.Core.Http.Cookies;
 using FubuMVC.Core.Http.Owin.Middleware;
 using FubuMVC.Core.Json;
@@ -90,10 +89,6 @@ namespace FubuMVC.Core.Registration
             SetServiceIfNone<IExceptionHandlingObserver, ExceptionHandlingObserver>();
 
             SetServiceIfNone<IPartialInvoker, PartialInvoker>();
-
-            AddService<IHttpContentEncoding, GZipHttpContentEncoding>();
-            AddService<IHttpContentEncoding, DeflateHttpContentEncoding>();
-            SetServiceIfNone<IHttpContentEncoders, HttpContentEncoders>();
 
             SetServiceIfNone<ICookies, Cookies>();
 

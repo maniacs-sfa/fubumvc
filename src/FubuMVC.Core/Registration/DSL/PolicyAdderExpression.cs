@@ -1,5 +1,4 @@
 using System;
-using FubuMVC.Core.Http.Compression;
 using FubuMVC.Core.Registration.Conventions;
 
 namespace FubuMVC.Core.Registration.DSL
@@ -13,7 +12,6 @@ namespace FubuMVC.Core.Registration.DSL
 
     public class PolicyAdderExpression
     {
-        public readonly static HttpContentEncodingFilter DefaultFilter = new HttpContentEncodingFilter(new HttpContentEncoders(new IHttpContentEncoding[] { new GZipHttpContentEncoding(), new DeflateHttpContentEncoding() }));
 
 
         protected PolicyGraph Configuration;

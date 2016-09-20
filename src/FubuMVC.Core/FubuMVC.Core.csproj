@@ -56,7 +56,6 @@
     <Compile Include="AjaxExtensions.cs" />
     <Compile Include="Ajax\AjaxContinuationWriter.cs" />
     <Compile Include="Ajax\AjaxError.cs" />
-    <Compile Include="Attributes\CompressContentAttribute.cs" />
     <Compile Include="Attributes\ViewSubjectAttribute.cs" />
     <Compile Include="BehaviorChainExtensions.cs" />
     <Compile Include="Behaviors\ActionInvoker.cs" />
@@ -91,7 +90,6 @@
     <Compile Include="Diagnostics\PerformanceFubuDiagnostics.cs" />
     <Compile Include="Diagnostics\PollingJobFubuDiagnostics.cs" />
     <Compile Include="FubuModeExtensions.cs" />
-    <Compile Include="Http\Compression\ApplyCompression.cs" />
     <Compile Include="Http\Hosting\IHost.cs" />
     <Compile Include="Http\Hosting\Katana.cs" />
     <Compile Include="Http\Hosting\HostingFailedException.cs" />
@@ -457,8 +455,6 @@
     <Compile Include="Attributes\FubuPartialAttribute.cs" />
     <Compile Include="FubuRuntime.cs" />
     <Compile Include="Http\CommaTokenParser.cs" />
-    <Compile Include="Http\Compression\DeflateHttpContentEncoding.cs" />
-    <Compile Include="Http\Compression\DoNotCompressAttribute.cs" />
     <Compile Include="Http\ConnegQuerystring.cs" />
     <Compile Include="Http\ConnegSettings.cs" />
     <Compile Include="Http\Cookies\CookieState.cs" />
@@ -518,11 +514,6 @@
     <Compile Include="ReflectionExtensions.cs" />
     <Compile Include="Registration\AccessorRulesExpression.cs" />
     <Compile Include="Registration\ActionSourceAggregator.cs" />
-    <Compile Include="Http\Compression\ContentEncoding.cs" />
-    <Compile Include="Http\Compression\GZipHttpContentEncoding.cs" />
-    <Compile Include="Http\Compression\HttpContentEncodingFilter.cs" />
-    <Compile Include="Http\Compression\IHttpContentEncoders.cs" />
-    <Compile Include="Http\Compression\IHttpContentEncoding.cs" />
     <Compile Include="Registration\Conventions\DefaultRouteConventionBasedUrlPolicy.cs" />
     <Compile Include="Registration\Conventions\DefaultUrlPolicy.cs" />
     <Compile Include="Registration\Conventions\OutputBeforeAjaxContinuationPolicy.cs" />

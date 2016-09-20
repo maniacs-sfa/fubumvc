@@ -6,7 +6,6 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using FubuCore;
-using FubuMVC.Core.Http.Compression;
 using FubuMVC.Core.Http.Headers;
 
 namespace FubuMVC.Core.Http.AspNet
@@ -81,10 +80,6 @@ namespace FubuMVC.Core.Http.AspNet
             return keys.Select(x => new Header(x, _response.Headers[x])).ToArray();
         }
 
-        public void UseEncoding(IHttpContentEncoding encoding)
-        {
-            _response.Filter = encoding.Encode(_response.Filter);
-        }
 
         public Task Write(Func<Stream, Task> output)
         {

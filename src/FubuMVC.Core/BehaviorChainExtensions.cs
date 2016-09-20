@@ -3,33 +3,12 @@ using System.Linq;
 using FubuCore;
 using FubuCore.Reflection;
 using FubuMVC.Core.Behaviors;
-using FubuMVC.Core.Http.Compression;
 using FubuMVC.Core.Registration.Nodes;
 
 namespace FubuMVC.Core
 {
     public static class BehaviorChainExtensions
     {
-        public readonly static HttpContentEncodingFilter DefaultFilter = new HttpContentEncodingFilter(new HttpContentEncoders(new IHttpContentEncoding[] { new GZipHttpContentEncoding(), new DeflateHttpContentEncoding() }));
-
-        public static void ApplyCompression(this BehaviorChain chain, params IHttpContentEncoding[] encodings)
-        {
-            if (chain.Calls.Any(x => x.HasAttribute<DoNotCompressAttribute>()))
-            {
-                return;
-            }
-
-            if (encodings.Any())
-            {
-                var filter = new HttpContentEncodingFilter(new HttpContentEncoders(encodings));
-                chain.AddFilter(filter);
-            }
-            else
-            {
-                chain.AddFilter(DefaultFilter);
-            }
-        }
-
         public static bool HandlerTypeIs<T>(this BehaviorChain chain)
         {
             return chain.Calls.Any(x => x.HandlerType == typeof (T));

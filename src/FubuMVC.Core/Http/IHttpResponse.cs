@@ -5,7 +5,6 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using FubuCore;
-using FubuMVC.Core.Http.Compression;
 using FubuMVC.Core.Http.Headers;
 
 namespace FubuMVC.Core.Http
@@ -80,12 +79,6 @@ namespace FubuMVC.Core.Http
         IEnumerable<Header> AllHeaders();
 
         /// <summary>
-        /// Applies output encoding to the response.  Mostly used by FubuMVC's internal support for content compression
-        /// </summary>
-        /// <param name="encoding"></param>
-        void UseEncoding(IHttpContentEncoding encoding);
-
-        /// <summary>
         /// Write directly to the output stream
         /// </summary>
         /// <param name="output"></param>
@@ -142,11 +135,6 @@ namespace FubuMVC.Core.Http
         }
 
         public IEnumerable<Header> AllHeaders()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UseEncoding(IHttpContentEncoding encoding)
         {
             throw new NotImplementedException();
         }
