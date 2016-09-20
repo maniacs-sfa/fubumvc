@@ -1,5 +1,4 @@
 ﻿using System;
-using FubuMVC.Core.Localization;
 using FubuMVC.Core.ServiceBus;
 using FubuMVC.Core.ServiceBus.Configuration;
 using FubuMVC.Core.ServiceBus.Runtime.Serializers;
@@ -24,17 +23,6 @@ namespace FubuMVC.Core.Registration.DSL
             get
             {
                 return new Feature<DiagnosticsSettings, TraceLevel>(_parent, (settings, level) => settings.TraceLevel = level);
-            }
-        }
-
-        /// <summary>
-        /// Configure and enable the built in localization features
-        /// </summary>
-        public Feature<LocalizationSettings, bool> Localization
-        {
-            get
-            {
-                return new Feature<LocalizationSettings, bool>(_parent, (settings, enabled) => settings.Enabled = enabled);
             }
         }
 

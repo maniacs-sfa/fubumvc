@@ -47,7 +47,6 @@ using (var runtime = FubuRuntime.Basic())
         public ExampleRegistry()
         {
             // Turn on some opt in features
-            Features.Localization.Enable(true);
             Features.Diagnostics.Enable(TraceLevel.Production);
 
             // Change the application mode if you want
