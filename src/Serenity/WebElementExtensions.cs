@@ -1,8 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
-using FubuMVC.Core.Assets;
 using FubuMVC.Core.Runtime;
-using FubuMVC.Core.Urls;
 using OpenQA.Selenium;
 
 namespace Serenity
@@ -11,8 +7,8 @@ namespace Serenity
     {
         public static bool IsCssLink(this IWebElement element)
         {
-            return element.TagName == "link" &&
-                   element.GetMimeType() == MimeType.Css;
+            return (element.TagName == "link") &&
+                   (element.GetMimeType() == MimeType.Css);
         }
 
         public static string Href(this IWebElement element)
@@ -28,7 +24,7 @@ namespace Serenity
 
         public static bool IsHiddenInput(this IWebElement element)
         {
-            return element.TagName == "input" && element.GetAttribute("type") == "hidden";
+            return (element.TagName == "input") && (element.GetAttribute("type") == "hidden");
         }
     }
 }

@@ -37,15 +37,6 @@ namespace FubuMVC.Tests.Diagnostics
                 .ShouldNotBeNull();
         }
 
-        [Test]
-        public void got_all_the_routes_in_the_diagnostic_javascript_router()
-        {
-            var routes = runtime.Get<DiagnosticJavascriptRoutes>();
-            var names = routes.Routes().Select(x => x.Name).ToArray();
 
-            names.ShouldContain("StructureMap:summary");
-            names.ShouldContain("Chain:chain_details_Hash");
-            names.ShouldContain("Requests:requests");
-        }
     }
 }

@@ -3,8 +3,9 @@ using System.Threading;
 using FubuCore;
 using FubuMVC.Core.Continuations;
 using FubuMVC.Core.ServiceBus.Polling;
-using FubuMVC.Core.View;
+using FubuMVC.Core.Urls;
 using HtmlTags;
+using HtmlTags.Extended.Attributes;
 
 namespace DiagnosticsHarness
 {
@@ -27,11 +28,13 @@ namespace DiagnosticsHarness
 
     public class SampleJobEndpoint
     {
-        private readonly FubuHtmlDocument _document;
+        private readonly HtmlDocument _document;
+        private readonly IUrlRegistry _urls;
 
-        public SampleJobEndpoint(FubuHtmlDocument document)
+        public SampleJobEndpoint(HtmlDocument document, IUrlRegistry urls)
         {
             _document = document;
+            _urls = urls;
         }
 
         public HtmlDocument get_samplejob_controller()
@@ -44,13 +47,13 @@ namespace DiagnosticsHarness
 
             _document.Add("p")
                 .Text(SampleJob.WillSucceed ? "The job will succeed on execution" : "The job fails on execution");
-            _document.Push("form").Attr("action", _document.Urls.UrlFor<ToggleSampleJob>()).Attr("method", "POST");
+            _document.Push("form").Attr("action", _urls.UrlFor<ToggleSampleJob>()).Attr("method", "POST");
             _document.Add("input").Attr("type", "submit").Text("Toggle the Sample Job Success State");
             _document.Pop();
 
             _document.Add("hr");
 
-            _document.Push("form").Attr("action", _document.Urls.UrlFor<SetSampleJobTime>()).Attr("method", "POST");
+            _document.Push("form").Attr("action", _urls.UrlFor<SetSampleJobTime>()).Attr("method", "POST");
             _document.Add("input").Attr("type", "text").Value(SampleJob.Delay.ToString()).Name("Seconds");
             _document.Add("input").Attr("type", "submit").Text("Set the execution time in seconds");
 

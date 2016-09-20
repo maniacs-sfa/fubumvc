@@ -4,9 +4,7 @@ using FubuCore;
 using FubuMVC.Core.Resources.Conneg;
 using FubuMVC.Core.Runtime;
 using FubuMVC.Core.Security.Authentication.Endpoints;
-using FubuMVC.Core.UI;
 using FubuMVC.Core.Urls;
-using FubuMVC.Core.View;
 using HtmlTags;
 using HtmlTags.Extended.Attributes;
 
@@ -14,6 +12,17 @@ namespace FubuMVC.Core.Security.Authentication
 {
     public class DefaultLoginRequestWriter : IMediaWriter<LoginRequest>
     {
+        public Task Write(string mimeType, IFubuRequestContext context, LoginRequest resource)
+        {
+            return context.Writer.Write(mimeType,
+                BuildView(context.Service<IUrlRegistry>(), context.Writer, resource).ToString());
+        }
+
+        public IEnumerable<string> Mimetypes
+        {
+            get { yield return MimeType.Html.Value; }
+        }
+
         public virtual HtmlDocument BuildView(IUrlRegistry urls, IOutputWriter writer, LoginRequest request)
         {
             // TODO -- Revisit all of this when we get HTML conventions everywhere
@@ -22,9 +31,7 @@ namespace FubuMVC.Core.Security.Authentication
             form.Append(new HtmlTag("legend").Text(LoginKeys.Login));
 
             if (request.Message.IsNotEmpty())
-            {
                 form.Append(new HtmlTag("p").Text(request.Message).Style("color", "red"));
-            }
 
             form.Append(new TextboxTag("UserName", request.UserName));
             form.Append(new TextboxTag("Password", request.Password));
@@ -32,7 +39,6 @@ namespace FubuMVC.Core.Security.Authentication
 
 
             form.Append(new DivTag().Text(request.Message).Id("login-message"));
-            
 
 
             form.Append(new HiddenTag().Name("Url").Attr("value", request.Url));
@@ -43,16 +49,5 @@ namespace FubuMVC.Core.Security.Authentication
 
             return view;
         }
-
-        public Task Write(string mimeType, IFubuRequestContext context, LoginRequest resource)
-        {
-            return context.Writer.Write(mimeType, BuildView(context.Service<IUrlRegistry>(), context.Writer, resource).ToString());
-        }
-
-        public IEnumerable<string> Mimetypes
-        {
-            get { yield return MimeType.Html.Value; }
-        }
     }
-
 }

@@ -7,7 +7,6 @@ using FubuCore.Conversion;
 using FubuCore.Formatting;
 using FubuCore.Logging;
 using FubuMVC.Core;
-using FubuMVC.Core.Assets;
 using FubuMVC.Core.Continuations;
 using FubuMVC.Core.Diagnostics;
 using FubuMVC.Core.Diagnostics.Assets;
@@ -25,7 +24,6 @@ using FubuMVC.Core.Runtime.SessionState;
 using FubuMVC.Core.Security;
 using FubuMVC.Core.Security.Authorization;
 using FubuMVC.Core.Urls;
-using FubuMVC.Core.View;
 using NUnit.Framework;
 using StructureMap;
 
@@ -65,7 +63,6 @@ namespace FubuMVC.Tests
                 _.DefaultRegistrationIs<IRequestDataProvider, RequestDataProvider>();
                 _.DefaultRegistrationIs<Stringifier, Stringifier>(); // it's goofy, but assert that it exists
 
-                _.ShouldHaveRegistration<IActivator, DisplayConversionRegistryActivator>();
 
                 _.DefaultSingletonIs<IChainResolver, ChainResolutionCache>();
                 _.DefaultSingletonIs<IClientMessageCache, ClientMessageCache>();
@@ -96,10 +93,6 @@ namespace FubuMVC.Tests
                 _.DefaultRegistrationIs<IContinuationProcessor, ContinuationProcessor>();
                 _.DefaultRegistrationIs<IConditionalService, ConditionalService>();
 
-                // Assets
-                _.DefaultRegistrationIs<IAssetTagBuilder, AssetTagBuilder>();
-                _.DefaultSingletonIs<IAssetFinder, AssetFinderCache>();
-
                 // Diagnostics
                 _.DefaultSingletonIs<IDiagnosticAssets, DiagnosticAssetsCache>();
 
@@ -116,13 +109,5 @@ namespace FubuMVC.Tests
             }
         }
 
-        [Test]
-        public void IAssetTagBuilder_is_registered_in_development_mode()
-        {
-            using (var runtime = FubuRuntime.Basic(_ => _.Mode = "development"))
-            {
-                runtime.Get<IContainer>().DefaultRegistrationIs<IAssetTagBuilder, DevelopmentModeAssetTagBuilder>();
-            }
-        }
     }
 }

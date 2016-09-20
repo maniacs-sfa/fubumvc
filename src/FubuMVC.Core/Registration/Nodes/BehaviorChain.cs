@@ -13,7 +13,6 @@ using FubuMVC.Core.Resources.Conneg;
 using FubuMVC.Core.Runtime;
 using FubuMVC.Core.Security.Authorization;
 using FubuMVC.Core.Urls;
-using FubuMVC.Core.View;
 using StructureMap.Pipeline;
 
 namespace FubuMVC.Core.Registration.Nodes
@@ -348,15 +347,6 @@ namespace FubuMVC.Core.Registration.Nodes
             {
                 title += Calls.Select(x => x.Description).Join(", ");
                 return title;
-            }
-
-            if (Tags.Contains("ActionlessView"))
-            {
-                var views =
-                    Output.Media()
-                        .OfType<IViewWriter>()
-                        .Select(x => Description.For(x.View).Title);
-                return "View for: " + ResourceType().FullName;
             }
 
             if (HasOutput() && Output.Media().Any())

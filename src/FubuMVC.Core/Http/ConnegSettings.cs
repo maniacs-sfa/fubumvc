@@ -9,8 +9,6 @@ using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Resources.Conneg;
 using FubuMVC.Core.Runtime;
 using FubuMVC.Core.Runtime.Formatters;
-using FubuMVC.Core.View;
-using FubuMVC.Core.View.Attachment;
 
 namespace FubuMVC.Core.Http
 {
@@ -24,7 +22,6 @@ namespace FubuMVC.Core.Http
             Rules.AddToEnd<StringOutput>();
             Rules.AddToEnd<HtmlTagsRule>();
             Rules.AddToEnd<CustomReadersAndWriters>();
-            Rules.AddToEnd<ViewAttachment>();
             Rules.AddToEnd<DefaultReadersAndWriters>();
         }
 
@@ -51,11 +48,6 @@ namespace FubuMVC.Core.Http
             _graph = ConnegGraph.Build(graph);
         }
 
-        public void StoreViews(Task<ViewBag> views)
-        {
-            _views = views;
-        }
-
         public ConnegGraph Graph
         {
             get
@@ -65,17 +57,6 @@ namespace FubuMVC.Core.Http
 
                 _graph.Wait(5.Seconds());
                 return _graph.Result;
-            }
-        }
-
-        public ViewBag Views
-        {
-            get
-            {
-                if (_views == null) return new ViewBag(Enumerable.Empty<IViewToken>());
-
-                _views.Wait(5.Seconds());
-                return _views.Result;
             }
         }
 
@@ -104,7 +85,6 @@ namespace FubuMVC.Core.Http
 
         public readonly IList<IMimetypeCorrection> Corrections = new List<IMimetypeCorrection>();
         private Task<ConnegGraph> _graph;
-        private Task<ViewBag> _views;
 
         public void InterpretQuerystring(CurrentMimeType mimeType, IHttpRequest request)
         {

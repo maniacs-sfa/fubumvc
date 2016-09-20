@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using FubuMVC.Core.Runtime;
 using FubuMVC.Core.Runtime.Formatters;
-using FubuMVC.Core.View;
 using StructureMap.Pipeline;
 
 namespace FubuMVC.Core.Resources.Conneg
@@ -74,8 +73,6 @@ namespace FubuMVC.Core.Resources.Conneg
 
         bool HasView();
 
-
-        IViewToken DefaultView();
 
         /// <summary>
         /// Use the specified type T as the resource not found handler strategy

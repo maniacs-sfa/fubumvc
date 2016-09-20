@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using FubuMVC.IntegrationTesting.Serenity.App;
 using Serenity.Fixtures;
 using StoryTeller;
 
@@ -17,7 +16,9 @@ namespace FubuMVC.IntegrationTesting.Serenity.Fixtures
         protected override void beforeRunning()
         {
             DisableAllSecurity();
-            Navigation.NavigateTo<AppErrorEndpoint>(x => x.get_javascript_error());
+            
+            throw new NotImplementedException("Redo this");
+            //Navigation.NavigateTo<AppErrorEndpoint>(x => x.get_javascript_error());
         }
 
         [FormatAs("The page should have a javascript error with the text {text}")]

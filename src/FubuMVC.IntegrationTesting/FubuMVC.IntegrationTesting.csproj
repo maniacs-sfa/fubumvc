@@ -52,25 +52,9 @@
     <Compile Include="AboutEndpointIntegrationTester.cs" />
     <Compile Include="Aggregation\aggregator_integration_tester.cs" />
     <Compile Include="Ajax\AjaxContinuationProcessingTester.cs" />
-    <Compile Include="Assets\AssetIntegrationContext.cs" />
-    <Compile Include="Assets\asset_writing_headers_are_configurable.cs" />
-    <Compile Include="Assets\asset_writing_in_development.cs" />
-    <Compile Include="Assets\asset_writing_in_production.cs" />
-    <Compile Include="Assets\can_write_font_related_assets_Issue_764.cs" />
-    <Compile Include="Assets\determine_the_public_asset_folder.cs" />
-    <Compile Include="Assets\FindingAndResolving\Adding_CDN_Assets.cs" />
-    <Compile Include="Assets\FindingAndResolving\aliasing_assets.cs" />
-    <Compile Include="Assets\FindingAndResolving\Asset_graph_building_and_resolving_with_defaults.cs" />
-    <Compile Include="Assets\JavascriptRouting.cs" />
-    <Compile Include="Assets\Tag_building_in_development_mode.cs" />
-    <Compile Include="Assets\Tag_building_in_production_mode.cs" />
-    <Compile Include="Assets\Tag_building_with_required_scripts.cs" />
     <Compile Include="Async\AsyncRouteIntegrationTester.cs" />
     <Compile Include="Authorization\end_to_end_authorization_tester.cs" />
     <Compile Include="can_register_and_use_OWIN_middleware_from_a_package.cs" />
-    <Compile Include="CommandLine\Running\RemoteFubuMvcBootstrapperTester.cs" />
-    <Compile Include="CommandLine\Running\StartApplicationTester.cs" />
-    <Compile Include="CommandLine\usage_graph_smoke_tester.cs" />
     <Compile Include="Conneg\AjaxInputModelBindingIntegrationTester.cs" />
     <Compile Include="Conneg\ConnegFixture.cs" />
     <Compile Include="Conneg\Conneg_can_be_corrected_with_querystring_parameters_for_JSON_and_XML.cs" />
@@ -158,7 +142,6 @@
     <Compile Include="Security\Authentication\unauthenticated_request_against_an_authenticated_route.cs" />
     <Compile Include="Security\Authentication\unauthenticated_request_against_an_unauthenticated_route.cs" />
     <Compile Include="Security\Authorization\AuthorizationPreviewServiceIntegratedTester.cs" />
-    <Compile Include="Serenity\App\AppErrorEndpoint.cs" />
     <Compile Include="Serenity\BrowserType_selection_tester.cs" />
     <Compile Include="Serenity\Fixtures\JavascriptErrorFixture.cs" />
     <Compile Include="Serenity\Fixtures\OpenScreenFixture.cs" />
@@ -177,14 +160,7 @@
     <Compile Include="Samples\IFubuRequestUsage.cs" />
     <Compile Include="TestHost.cs" />
     <Compile Include="TestSystem.cs" />
-    <Compile Include="UI\ElementConventionsFubuPageExtensions_FullStackTester_DefaultConventions.cs" />
-    <Compile Include="UI\ElementConventions_for_Partials_in_Loop_Tester.cs" />
-    <Compile Include="UI\Explicit_accessor_overrides_integration_tester.cs" />
-    <Compile Include="UI\FormRequestConventionsIntegrationTester.cs" />
-    <Compile Include="UI\FubuPageExtensions_FullStack_Tester.cs" />
-    <Compile Include="UI\indexer_owner_type_bug_tester.cs" />
     <Compile Include="Using_a_custom_routing_policy.cs" />
-    <Compile Include="Auto_Import_Model_Namespaces.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FubuMVC.Core\FubuMVC.Core.csproj">
@@ -202,10 +178,6 @@
     <ProjectReference Include="..\FubuMVC.Tests\FubuMVC.Tests.csproj">
       <Project>{FEB91F9F-ECE2-480C-B39C-A44BBF1F7B01}</Project>
       <Name>FubuMVC.Tests</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fubu\Fubu.csproj">
-      <Project>{90dbe31c-948d-47af-8c17-0056511a7313}</Project>
-      <Name>Fubu</Name>
     </ProjectReference>
     <ProjectReference Include="..\OwinBottle\OwinBottle.csproj">
       <Project>{60b6139b-6bda-4860-a475-9675d47888f7}</Project>

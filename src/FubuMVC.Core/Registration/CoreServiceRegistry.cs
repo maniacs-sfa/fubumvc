@@ -6,8 +6,6 @@ using FubuCore.Dates;
 using FubuCore.Formatting;
 using FubuCore.Logging;
 using FubuCore.Reflection;
-using FubuMVC.Core.Assets;
-using FubuMVC.Core.Assets.JavascriptRouting;
 using FubuMVC.Core.Continuations;
 using FubuMVC.Core.Diagnostics;
 using FubuMVC.Core.Diagnostics.Assets;
@@ -23,12 +21,11 @@ using FubuMVC.Core.Runtime.Aggregation;
 using FubuMVC.Core.Runtime.Conditionals;
 using FubuMVC.Core.Runtime.SessionState;
 using FubuMVC.Core.Urls;
-using FubuMVC.Core.View;
 
 namespace FubuMVC.Core.Registration
 {
     /// <summary>
-    /// The core runtime service registry for a FubuMVC application
+    ///     The core runtime service registry for a FubuMVC application
     /// </summary>
     public class CoreServiceRegistry : ServiceRegistry
     {
@@ -101,29 +98,15 @@ namespace FubuMVC.Core.Registration
 
             SetServiceIfNone<ICookies, Cookies>();
 
-            if (mode.InDevelopment())
-            {
-                SetServiceIfNone<IAssetTagBuilder, DevelopmentModeAssetTagBuilder>();
-            }
-            else
-            {
-                SetServiceIfNone<IAssetTagBuilder, AssetTagBuilder>();
-            }
-
-            SetServiceIfNone<IJavascriptRouteData, JavascriptRouteData>();
-
 
             SetServiceIfNone<ISettingsProvider, SettingsProvider>();
             AddService<ISettingsSource>(new AppSettingsSettingSource(SettingCategory.environment));
-
-            SetServiceIfNone<IAssetFinder, AssetFinderCache>().Singleton();
 
             SetServiceIfNone<IClientMessageCache, ClientMessageCache>().Singleton();
 
             SetServiceIfNone<IJsonSerializer, NewtonSoftJsonSerializer>();
 
             SetServiceIfNone<IPartialInvoker, PartialInvoker>();
-            AddService<IActivator>(typeof(DisplayConversionRegistryActivator));
         }
     }
 }

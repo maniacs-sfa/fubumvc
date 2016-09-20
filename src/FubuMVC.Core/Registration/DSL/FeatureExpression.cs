@@ -6,7 +6,6 @@ using FubuMVC.Core.ServiceBus;
 using FubuMVC.Core.ServiceBus.Configuration;
 using FubuMVC.Core.ServiceBus.Runtime.Serializers;
 using FubuMVC.Core.ServiceBus.Sagas;
-using FubuMVC.Core.Validation.Web;
 
 namespace FubuMVC.Core.Registration.DSL
 {
@@ -62,14 +61,6 @@ namespace FubuMVC.Core.Registration.DSL
                 return new Feature<AntiForgerySettings, bool>(_parent, (settings, enabled) => settings.Enabled = enabled);
             }
         }
-
-        public Feature<ValidationSettings, bool> Validation
-        {
-            get
-            {
-                return new Feature<ValidationSettings, bool>(_parent, (x, enabled) => x.Enabled = enabled);
-            }
-        } 
 
     }
 

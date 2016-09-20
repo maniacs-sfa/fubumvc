@@ -3,7 +3,6 @@ using System.Linq;
 using FubuMVC.Core;
 using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Nodes;
-using FubuMVC.Core.View;
 using NUnit.Framework;
 using Shouldly;
 
@@ -16,7 +15,6 @@ namespace FubuMVC.Tests.Registration
         {
             _.Actions.DisableDefaultActionSource();
             _.Actions.IncludeType<FakeActions>();
-            _.AlterSettings<ViewEngineSettings>(x => x.ExcludeViews(t => true));
         });
 
         private void assertHasRoutes(IEnumerable<RoutedChain> chains, params int[] numbers)

@@ -2,10 +2,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 using FubuCore;
-using FubuMVC.Core.Assets;
 using FubuMVC.Core.Diagnostics.Instrumentation;
 using FubuMVC.Core.Diagnostics.Packaging;
-using FubuMVC.Core.Diagnostics.Runtime;
 using FubuMVC.Core.Http;
 using FubuMVC.Core.Runtime.Files;
 using FubuMVC.Core.ServiceBus;
@@ -14,10 +12,7 @@ using FubuMVC.Core.ServiceBus.Monitoring;
 using FubuMVC.Core.ServiceBus.Polling;
 using FubuMVC.Core.ServiceBus.Runtime.Delayed;
 using FubuMVC.Core.ServiceBus.Subscriptions;
-using FubuMVC.Core.UI;
 using FubuMVC.Core.Validation;
-using FubuMVC.Core.View;
-using HtmlTags.Conventions;
 
 namespace FubuMVC.Core.Registration
 {
@@ -32,11 +27,8 @@ namespace FubuMVC.Core.Registration
             if (registry.Mode.InDevelopment())
             {
                 registry.AlterSettings<DiagnosticsSettings>(_ => _.TraceLevel = TraceLevel.Verbose);
-                registry.AlterSettings<AssetSettings>(_ => _.SetupForDevelopment());
             }
 
-            
-            
 
             var graph = new BehaviorGraph
             {
@@ -48,13 +40,13 @@ namespace FubuMVC.Core.Registration
             var validationCompilation = ValidationCompiler.Compile(graph, perfTimer, registry);
 
 
-
             var config = registry.Config;
 
-            perfTimer.Record("Applying Settings", () => applySettings(config, graph, diagnostics, files));
+            perfTimer.Record("Applying Settings", () => applySettings(config, graph, diagnostics));
 
             perfTimer.Record("Enable built in polling jobs", () => enableBuiltInJobs(graph));
-            perfTimer.Record("Applying Feature Settings", () => featureLoader.ApplyAll(graph.Settings, registry).Wait(30.Seconds()).AssertFinished());
+            perfTimer.Record("Applying Feature Settings",
+                () => featureLoader.ApplyAll(graph.Settings, registry).Wait(30.Seconds()).AssertFinished());
 
 
             config.Add(new ActionlessViewChainSource());
@@ -69,15 +61,12 @@ namespace FubuMVC.Core.Registration
             perfTimer.Record("Applying Global Reorderings", () => config.ApplyGlobalReorderings(graph));
 
 
-            if (registry.Mode.InDevelopment() || graph.Settings.Get<DiagnosticsSettings>().TraceLevel != TraceLevel.None)
-            {
+            if (registry.Mode.InDevelopment() ||
+                (graph.Settings.Get<DiagnosticsSettings>().TraceLevel != TraceLevel.None))
                 perfTimer.Record("Applying Tracing", () => ApplyTracing.Configure(graph));
-            }
 
 
-            Task.WaitAll(new Task[] { accessorRules, validationCompilation}, 30.Seconds()).AssertFinished();
-
-            new AutoImportModelNamespacesConvention().Configure(graph);
+            Task.WaitAll(new[] {accessorRules, validationCompilation}, 30.Seconds()).AssertFinished();
 
             return graph;
         }
@@ -89,14 +78,14 @@ namespace FubuMVC.Core.Registration
                 var jobs = graph.Settings.Get<PollingJobSettings>();
 
                 jobs.AddJob(PollingJobChain.For<DelayedEnvelopeProcessor, TransportSettings>(x => x.DelayMessagePolling));
-                jobs.AddJob(PollingJobChain.For<ExpiringListenerCleanup, TransportSettings>(x => x.ListenerCleanupPolling));
+                jobs.AddJob(
+                    PollingJobChain.For<ExpiringListenerCleanup, TransportSettings>(x => x.ListenerCleanupPolling));
 
                 if (!jobs.HasJob<HealthMonitorPollingJob>())
-                {
                     jobs.AddJob(PollingJobChain.For<HealthMonitorPollingJob, HealthMonitoringSettings>(x => x.Interval));
-                }
-                
-                jobs.AddJob(PollingJobChain.For<SubscriptionRefreshJob, TransportSettings>(x => x.SubscriptionRefreshPolling));
+
+                jobs.AddJob(
+                    PollingJobChain.For<SubscriptionRefreshJob, TransportSettings>(x => x.SubscriptionRefreshPolling));
             }
         }
 
@@ -106,22 +95,15 @@ namespace FubuMVC.Core.Registration
             graph.Chains.Each(x => x.InsertNodes(graph.Settings.Get<ConnegSettings>()));
         }
 
-        private static void applySettings(ConfigGraph config, BehaviorGraph graph, IActivationDiagnostics diagnostics, IFubuApplicationFiles files)
+        private static void applySettings(ConfigGraph config, BehaviorGraph graph, IActivationDiagnostics diagnostics)
         {
             // Might come back to this.
             config.Imports.Each(x => x.InitializeSettings(graph));
             config.Settings.Each(x => x.Alter(graph.Settings));
 
-            var viewSettings = graph.Settings.Get<ViewEngineSettings>();
-
-
-            var views = viewSettings.BuildViewBag(graph, diagnostics, files);
-
             var conneg = graph.Settings.Get<ConnegSettings>();
-            
 
             conneg.ReadConnegGraph(graph);
-            conneg.StoreViews(views);
         }
     }
 }

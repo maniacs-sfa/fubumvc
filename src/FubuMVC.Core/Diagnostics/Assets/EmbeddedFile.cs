@@ -2,7 +2,6 @@
 using System.Net;
 using System.Reflection;
 using FubuCore;
-using FubuMVC.Core.Assets;
 using FubuMVC.Core.Http;
 using FubuMVC.Core.Runtime;
 using HtmlTags;
@@ -12,7 +11,7 @@ namespace FubuMVC.Core.Diagnostics.Assets
     public class EmbeddedFile
     {
         private readonly Lazy<byte[]> _contents;
-        private readonly string _cacheHeader = "private, max-age={0}".ToFormat(AssetSettings.MaxAgeInSeconds);
+        //private readonly string _cacheHeader = "private, max-age={0}".ToFormat(AssetSettings.MaxAgeInSeconds);
         private Lazy<string> _text;
 
 
@@ -77,7 +76,7 @@ namespace FubuMVC.Core.Diagnostics.Assets
 
         public HtmlTag ToStyleTag(IHttpRequest request)
         {
-            return new StylesheetLinkTag(request.ToFullUrl(Url));
+            throw new NotImplementedException();
         }
 
         public HtmlTag ToEmbeddedStyleTag()

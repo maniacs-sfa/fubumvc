@@ -6,7 +6,6 @@ using FubuMVC.Core.Continuations;
 using FubuMVC.Core.ServiceBus;
 using FubuMVC.Core.ServiceBus.Diagnostics.Visualization;
 using FubuMVC.Core.Urls;
-using FubuMVC.Core.View;
 using HtmlTags;
 
 namespace ScheduledJobHarness
@@ -38,11 +37,11 @@ namespace ScheduledJobHarness
 
     public class HomeEndpoint
     {
-        private readonly FubuHtmlDocument _document;
+        private readonly HtmlDocument _document;
         private readonly MonitoredNodeGroup _group;
         private readonly IUrlRegistry _urls;
 
-        public HomeEndpoint(FubuHtmlDocument document, MonitoredNodeGroup group, IUrlRegistry urls)
+        public HomeEndpoint(HtmlDocument document, MonitoredNodeGroup group, IUrlRegistry urls)
         {
             _document = document;
             _group = @group;

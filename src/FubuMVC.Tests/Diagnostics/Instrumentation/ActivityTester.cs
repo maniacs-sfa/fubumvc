@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using FubuMVC.Core.Diagnostics.Instrumentation;
-using FubuMVC.Tests.View.FakeViews.Folder1;
 using NUnit.Framework;
 using Rhino.Mocks;
 using Shouldly;

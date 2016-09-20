@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using FubuCore.Descriptions;
 using FubuCore.Util;
 using FubuMVC.Core.Http.Owin.Middleware;
-using FubuMVC.Core.Http.Owin.Middleware.StaticFiles;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Runtime;
 
@@ -17,8 +16,6 @@ namespace FubuMVC.Core.Http.Owin
     {
         public OwinSettings()
         {
-            AddMiddleware<StaticFileMiddleware>();
-
             EnvironmentData.Fill(OwinConstants.HeaderSettings, Headers);
         }
 

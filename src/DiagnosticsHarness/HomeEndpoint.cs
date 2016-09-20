@@ -5,7 +5,7 @@ using FubuCore;
 using FubuMVC.Core;
 using FubuMVC.Core.Continuations;
 using FubuMVC.Core.ServiceBus;
-using FubuMVC.Core.View;
+using FubuMVC.Core.Urls;
 using HtmlTags;
 
 namespace DiagnosticsHarness
@@ -14,17 +14,19 @@ namespace DiagnosticsHarness
     {
         private readonly IServiceBus _serviceBus;
         private readonly INumberCache _cache;
-        private readonly FubuHtmlDocument _document;
+        private readonly HtmlDocument _document;
         private readonly FubuRuntime _runtime;
         private readonly MessagePumper _pumper;
+        private readonly IUrlRegistry _urls;
 
-        public HomeEndpoint(IServiceBus serviceBus, INumberCache cache, FubuHtmlDocument document, FubuRuntime runtime, MessagePumper pumper)
+        public HomeEndpoint(IServiceBus serviceBus, INumberCache cache, HtmlDocument document, FubuRuntime runtime, MessagePumper pumper, IUrlRegistry urls)
         {
             _serviceBus = serviceBus;
             _cache = cache;
             _document = document;
             _runtime = runtime;
             _pumper = pumper;
+            _urls = urls;
         }
 
         public FubuContinuation post_numbers(NumberPost input)
@@ -65,7 +67,7 @@ namespace DiagnosticsHarness
 
             _document.Add("br");
             _document.Add("a")
-                .Attr("href", _document.Urls.UrlFor<SampleJobEndpoint>(x => x.get_samplejob_controller()))
+                .Attr("href", _urls.UrlFor<SampleJobEndpoint>(x => x.get_samplejob_controller()))
                 .Text("Sample Polling Job Controller");
 
 

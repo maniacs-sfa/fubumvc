@@ -12,58 +12,57 @@ using FubuMVC.Core.Security.Authorization;
 using FubuMVC.Core.ServiceBus.Configuration;
 using FubuMVC.Core.ServiceBus.ErrorHandling;
 using FubuMVC.Core.ServiceBus.Registration;
-using FubuMVC.Core.UI;
 using StructureMap;
-using StructureMap.Configuration.DSL;
 
 namespace FubuMVC.Core.Registration
 {
     public class PolicyGraph
     {
-        public readonly ConfigurationActionSet Policies = new ConfigurationActionSet();
         public readonly ConfigurationActionSet Explicits = new ConfigurationActionSet();
+        public readonly ConfigurationActionSet Policies = new ConfigurationActionSet();
 
         public readonly ConfigurationActionSet Reordering = new ConfigurationActionSet();
     }
 
     /// <summary>
-    /// Holds and tracks all the IConfigurationAction's used to construct the BehaviorGraph of an application
+    ///     Holds and tracks all the IConfigurationAction's used to construct the BehaviorGraph of an application
     /// </summary>
     public class ConfigGraph
     {
-        private readonly Assembly _applicationAssembly;
-
         private readonly IList<RegistryImport> _imports = new List<RegistryImport>();
         private readonly IList<Registry> _services = new List<Registry>();
-
-        private readonly ActionSourceAggregator _actionSourceAggregator;
-        private readonly HandlerGraphSource _handlers = new HandlerGraphSource();
         private readonly IList<IChainSource> _sources = new List<IChainSource>();
+
+        public readonly ServiceRegistry ApplicationServices = new ServiceRegistry();
 
         public readonly PolicyGraph Global = new PolicyGraph();
         public readonly PolicyGraph Local = new PolicyGraph();
 
         public readonly IList<ISettingsAlteration> Settings = new List<ISettingsAlteration>();
 
-        public readonly ServiceRegistry ApplicationServices = new ServiceRegistry();
-
         public ConfigGraph(Assembly applicationAssembly)
         {
-            _applicationAssembly = applicationAssembly;
-            _actionSourceAggregator = new ActionSourceAggregator(_applicationAssembly);
+            ApplicationAssembly = applicationAssembly;
+            Actions = new ActionSourceAggregator(ApplicationAssembly);
 
-            _sources.Add(_actionSourceAggregator);
-            _sources.Add(_handlers);
+            _sources.Add(Actions);
+            _sources.Add(Handlers);
         }
 
-        public Assembly ApplicationAssembly
-        {
-            get { return _applicationAssembly; }
-        }
+        public Assembly ApplicationAssembly { get; }
 
         public IEnumerable<RegistryImport> Imports
         {
             get { return _imports; }
+        }
+
+        public HandlerGraphSource Handlers { get; } = new HandlerGraphSource();
+
+        public ActionSourceAggregator Actions { get; }
+
+        public IEnumerable<IChainSource> Sources
+        {
+            get { return _sources; }
         }
 
         public void AddImport(RegistryImport import)
@@ -77,14 +76,10 @@ namespace FubuMVC.Core.Registration
         public bool HasImported(FubuRegistry registry)
         {
             if (_imports.Any(x => x.Registry.GetType() == registry.GetType()))
-            {
                 return true;
-            }
 
             if (_imports.Any(x => x.Registry.Config.HasImported(registry)))
-            {
                 return true;
-            }
 
             return false;
         }
@@ -99,29 +94,15 @@ namespace FubuMVC.Core.Registration
         private IEnumerable<RegistryImport> allChildrenImports()
         {
             foreach (var import in _imports)
-            {
                 foreach (var action in import.Registry.Config._imports)
                 {
                     yield return action;
 
                     foreach (
                         var descendentAction in
-                            _imports.SelectMany(x => x.Registry.Config.allChildrenImports()))
-                    {
+                        _imports.SelectMany(x => x.Registry.Config.allChildrenImports()))
                         yield return descendentAction;
-                    }
                 }
-            }
-        }
-
-        public HandlerGraphSource Handlers
-        {
-            get { return _handlers; }
-        }
-
-        public ActionSourceAggregator Actions
-        {
-            get { return _actionSourceAggregator; }
         }
 
         public void Add(IChainSource source)
@@ -136,33 +117,22 @@ namespace FubuMVC.Core.Registration
 
         public void Add(IHandlerSource source)
         {
-            _handlers.HandlerSources.Add(source);
+            Handlers.HandlerSources.Add(source);
         }
 
         public void Add(IActionSource source)
         {
-            _actionSourceAggregator.Sources.Add(source);
+            Actions.Sources.Add(source);
         }
 
         public IEnumerable<Registry> AllServiceRegistrations()
         {
             foreach (var import in UniqueImports())
-            {
                 foreach (var log in import.Registry.Config.AllServiceRegistrations())
-                {
                     yield return log;
-                }
-            }
 
             foreach (var registry in _services)
-            {
                 yield return registry;
-            }
-        }
-
-        public IEnumerable<IChainSource> Sources
-        {
-            get { return _sources; }
         }
 
         public void ApplyGlobalReorderings(BehaviorGraph graph)
@@ -212,7 +182,6 @@ namespace FubuMVC.Core.Registration
             yield return new SecurityServicesRegistry();
             yield return new HttpStandInServiceRegistry();
             yield return new CoreServiceRegistry(mode);
-            yield return new UIServiceRegistry();
         }
 
         public void BuildLocal(BehaviorGraph graph, IPerfTimer timer)
